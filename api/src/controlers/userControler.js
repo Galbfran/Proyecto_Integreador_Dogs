@@ -1,37 +1,33 @@
+const axios = require('axios')
 const { Dog } = require('../db');
-const fetchData = require('./rutasApi');
-const obtenerDogsBD = require('./obtenerDogsBD')
+const apiDogID = require('./apiDogID')
+
 
 
 const createDog = async (imagen, nombre , altura , peso , anios_vida) => {
-    console.log(imagen, nombre , altura , peso , anios_vida)
-    try {
-        const newDog = await Dog.create({
-            Imagen: imagen, 
-            Nombre: nombre,
-            Altura: altura,
-            Peso: peso,
-            Anios_Vida: anios_vida});
-            console.log(newDog.ID_Dogs)
-        return newDog;    
-        
-    } catch (error) {
-        throw new Error(error.message);
+    const newDog = await Dog.create({
+        Imagen: imagen, 
+        Nombre: nombre,
+        Altura: altura,
+        Peso: peso,
+        Anios_Vida: anios_vida});
+    return newDog;
+}
+
+const getDogByRaza = async(id , source) => {
+    if (source === 'api'){
+        const response = await apiDogID(id);
+        return response
+    }else {
+        const resp_BD = await Dog.findByPk(id)
+        return resp_BD
+    };
+
     }
-}
 
-const getAllDog = async(id) => {
-try {
-    
-
-
-} catch (error) {
-    
-}
-}
 
 
 module.exports = {
     createDog,
-    getAllDog
+    getDogByRaza
 }

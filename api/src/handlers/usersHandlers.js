@@ -1,6 +1,6 @@
 const {
     createDog,
-    getAllDog
+    getDogByRaza
 } = require('../controlers/userControler')
 
 
@@ -20,12 +20,14 @@ const allDogsHandler = async (req , res) => {
 
 const dogsByRazaHandler = async (req , res) => {
     const { idRaza } = req.params;
-    if (typeof Number(idRaza) == 'number') console.log('es un numero')
-    try {
-        return res.status(200).json(`el id es :${idRaza}`)
 
-        /* const dog = await getDogById(id)
-        return res.status(200).json(dog) */
+    const source = isNaN(idRaza) ? 'bdd' : 'api' 
+
+
+    try {
+        const dog = await getDogByRaza(idRaza , source);
+
+        return res.status(200).json(dog)
     } catch (error) {
         return res.status(400).json({error : error.message})
     }
@@ -44,7 +46,6 @@ const postDogsHandler = async (req , res) => {
 try {
     const {imagen , nombre , altura , peso , anios_vida} = req.body;
     if(!imagen || !nombre || !altura || !peso || !anios_vida) throw Error('Faltan datos para crear un nuevo perro')
-
     const newDog = await createDog(imagen , nombre , altura , peso , anios_vida);
     return res.status(201).json(newDog);
 } catch (error) {
