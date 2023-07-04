@@ -9,12 +9,9 @@ try {
         'x-api-key': DB_API_KEY
         }
     });
-
-    // Aquí puedes procesar los datos de la respuesta
     return response;
 } catch (error) {
-    // Si ocurre un error, puedes manejarlo aquí
-    console.error(error);
+    return error.message
 }
 };
 

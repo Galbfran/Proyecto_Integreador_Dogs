@@ -30,5 +30,12 @@ module.exports = (sequelize) => {
       type: DataTypes.FLOAT,
       allowNull: false
     },
+    Temperamento:{
+      type: DataTypes.TEXT,
+    },
+    BaseDatos:{
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
+    }
   });
 };
