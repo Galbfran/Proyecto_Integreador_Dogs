@@ -4,7 +4,6 @@ const { Router } = require('express');
 const {
     allDogsHandler,
     dogsByRazaHandler,
-    dogsNameHandler,
     temperamentsHandler,
     postDogsHandler
 } = require('../handlers/usersHandlers')
@@ -20,7 +19,7 @@ router.get('/dogs/:idRaza',dogsByRazaHandler);
 
 router.get('/dogs',allDogsHandler);
 
-router.get('/dogs/name?',dogsNameHandler);
+router.get('/dogs/name?',allDogsHandler);
 
 router.get('/temperaments',temperamentsHandler);
 

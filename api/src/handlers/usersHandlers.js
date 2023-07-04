@@ -1,6 +1,8 @@
 const {
     createDog,
-    getDogByRaza
+    getDogByRaza,
+    getAllDogs,
+    getDogName
 } = require('../controlers/userControler')
 
 
@@ -8,9 +10,11 @@ const allDogsHandler = async (req , res) => {
     try {
         const { name } = req.query;
         if (name){
-            return res.status(200).send(`todos los perros ${name}`)
+            const dogName = await getDogName(name);
+            return res.status(200).json(dogName);
         }
-        return res.status(200).send(`ruta todos`)
+        const allDogs = await getAllDogs();
+        return res.status(200).json(allDogs);
     
 } catch (error) {
     return res.status(400).json({error : error.message})
@@ -29,10 +33,7 @@ const dogsByRazaHandler = async (req , res) => {
     }
 }
 
-const dogsNameHandler = async (req , res) => {
 
-    res.send('ruta dogsNameHandler')
-}
 
 const temperamentsHandler = async (req , res) => {
     res.send('ruta temperamentsHandler')
@@ -52,7 +53,6 @@ try {
 module.exports = {
     allDogsHandler,
     dogsByRazaHandler,
-    dogsNameHandler,
     temperamentsHandler,
     postDogsHandler
 }
