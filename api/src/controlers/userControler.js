@@ -1,5 +1,5 @@
-const axios = require('axios')
-const { Dog , Temperaments} = require('../db');
+
+const { Dog } = require('../db');
 const apiDogID = require('./consultasApi/apiDogID');
 const fetchData = require('./consultasApi/rutasApi')
 
@@ -55,11 +55,22 @@ const getDogName = async(name) => {
     return dogByName;
 }
 
+const getTemperaments = async () => {
+    const allDogs = await getAllDogs();
+    let temperament = [];
+    allDogs.forEach(dogs => {
+            const arrayTemp = dogs.Temperamento?.split(', ');
+            temperament =  temperament.concat(arrayTemp);
+    })
+    let arraySinRepetidos = temperament.filter((value, index, self) =>  self.indexOf(value) === index);
+    return arraySinRepetidos.sort()
+}
 
 
 module.exports = {
     createDog,
     getDogByRaza,
     getAllDogs,
-    getDogName
+    getDogName,
+    getTemperaments
 }

@@ -2,7 +2,8 @@ const {
     createDog,
     getDogByRaza,
     getAllDogs,
-    getDogName
+    getDogName,
+    getTemperaments
 } = require('../controlers/userControler')
 
 
@@ -36,7 +37,13 @@ const dogsByRazaHandler = async (req , res) => {
 
 
 const temperamentsHandler = async (req , res) => {
-    res.send('ruta temperamentsHandler')
+    try {
+        const temperament = await getTemperaments()
+        res.status(200).json(temperament)
+        
+    } catch (error) {
+        return res.status(400).json({error : error.message})
+    }
 }
 
 const postDogsHandler = async (req , res) => {
