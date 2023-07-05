@@ -1,4 +1,8 @@
+// routes
 import { Routes , Route } from "react-router-dom";
+
+//redux
+
 
 //Pages
 import Home from './componentes/HomePage/Home';
@@ -18,7 +22,7 @@ function App() {
         <Route path="/" element={<Inicio/>}/>
         <Route path="/form" element={<Form/>}/>
         <Route path="/home" element={<Home/>}/>
-        <Route path="/detail" element={<Detail/>}/>
+        <Route path="/detail/:id" element={<Detail/>}/>
         <Route path="/error" element={<Error/>}/>
       </Routes>
     </div>

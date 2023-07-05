@@ -1,10 +1,13 @@
-
+import NavBar from "../NavBar";
 
 
 const Form = () => {
     return(
         <>
-        <h2>Estoy en Form</h2>
+            <div>
+                <NavBar/>
+            </div>
+            <h2>Estoy en Form</h2>
         </>
     )
 }
