@@ -49,7 +49,9 @@ const Home = () => {
             </div>
             <article >
                 <div>
-                    <p> Pagina Numero {currentPage +1}</p>
+                    <p> Pagina Numero {currentPage +1} - {dogs.length / 8 + 0.5}</p> {/* corregir despues */}
+                    <button onClick={() => prevHandler()}>Anterior</button>
+                    <button onClick={() => nextHandler()}>Siguente</button>
                 </div>
                 <div className={styles.container}>
                 {   dogsRender.map(dog => {
@@ -64,10 +66,6 @@ const Home = () => {
                 }
                 </div>
             </article>
-        <div>
-            <button onClick={() => prevHandler()}>Anterior</button>
-            <button onClick={() => nextHandler()}>Siguente</button>
-        </div>
         </section>
     )
 }
