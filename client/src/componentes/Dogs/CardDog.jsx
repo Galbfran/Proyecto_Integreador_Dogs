@@ -1,15 +1,12 @@
 import { Link } from "react-router-dom";
+import styles from './styleCard.module.css'
 
-
-const CardDog = ({id , image , name , altura , peso , vida , temperamento}) => {
+const CardDog = ({id , image , name  , peso , temperamento}) => {
     return(
-        <div>
+        <div className={styles.card}>
+            <img src={image} alt={name} className={styles.imagen}/>
             <h2><Link to={`/detail/${id}`} >Raza: {name}</Link></h2>
-            <img src={image} alt={name} />
-            <p>ID_Dog: {id}</p>
-            <p>Altura: {altura}</p>
             <p>Peso: {peso}</p>
-            <p>Vida: {vida}</p>
             <p>Temperamento: {temperamento}</p>
         </div>
     )

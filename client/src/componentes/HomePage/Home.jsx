@@ -9,7 +9,7 @@ import { getAllDogs } from "../../redux/actions";
 //componentes
 import NavBar from "../NavBar";
 import CardDog from "../Dogs/CardDog";
-
+//css
 
 
 const Home = () => {

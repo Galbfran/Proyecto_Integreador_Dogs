@@ -5,7 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: gray;
+  background-image: url(https://estaticos-cdn.prensaiberica.es/clip/66e86d63-f5d3-4752-b019-29e28f5079a5_16-9-discover-aspect-ratio_default_0.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+ /*  background-position: center; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 code {

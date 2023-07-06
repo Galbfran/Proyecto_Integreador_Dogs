@@ -8,7 +8,8 @@ import { detailDogs , cleanDetail} from "../../redux/actions";
 
 //compenents
 import NavBar from "../NavBar";
-
+//css
+import styles from './Detail.module.css'
 
 const Detail = () => {
     const dispatch = useDispatch();
@@ -17,30 +18,33 @@ const Detail = () => {
     const dogDetail = useSelector((state) => state.dogsDetail )
     const { ID_Dogs ,Imagen , Nombre, Altura ,Peso ,Anios_Vida ,Temperamento } = dogDetail
     
-    
     useEffect(() => {
         dispatch(detailDogs(id));
         return () => dispatch(cleanDetail())
     }, [])
 
     return(
-        <>
-        <div>
-            <NavBar/>
-        </div>
-        <div>
-            <h2>Raza: {Nombre}</h2>
-            <img src={Imagen} alt={Nombre} />
-            <p>ID_Dog: {ID_Dogs}</p>
-            <p>Altura: {Altura}</p>
-            <p>Peso: {Peso}</p>
-            <p>Vida: {Anios_Vida}</p>
-            <p>Temperamento: {Temperamento}</p>
-        </div>
-        <button>
-            <Link to={'/home'}>Volver al Home</Link>
-        </button>
-        </>
+        <section className={styles.total}>
+            <div>
+                <NavBar/>
+            </div>
+            <div className={styles.container}>
+                <div>
+                    <img src={Imagen} alt={Nombre} className={styles.imagen}/>
+                </div>
+                <div className={styles.data}>
+                    <h2>Raza: {Nombre}</h2>
+                    <p>ID_Dog: {ID_Dogs}</p>
+                    <p>Altura: {Altura}</p>
+                    <p>Peso: {Peso}</p>
+                    <p>Vida: {Anios_Vida}</p>
+                    <p>Temperamento: {Temperamento}</p>
+                    <button>
+                        <Link to={'/home'}>Volver al Home</Link>
+                    </button>
+                </div>
+            </div>
+        </section>
     )
 }
 
