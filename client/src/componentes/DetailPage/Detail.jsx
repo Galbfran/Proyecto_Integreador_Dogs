@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { detailDogs , cleanDetail} from "../../redux/actions";
 
 //compenents
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 //css
 import styles from './Detail.module.css'
 
@@ -21,17 +21,14 @@ const Detail = () => {
     useEffect(() => {
         dispatch(detailDogs(id));
         return () => dispatch(cleanDetail())
-    }, [])
+    }, [id , dispatch])
 
     return(
-        <section className={styles.total}>
-            <div>
+        <section >
                 <NavBar/>
-            </div>
             <div className={styles.container}>
-                <div>
                     <img src={Imagen} alt={Nombre} className={styles.imagen}/>
-                </div>
+                
                 <div className={styles.data}>
                     <h2>Raza: {Nombre}</h2>
                     <p>ID_Dog: {ID_Dogs}</p>

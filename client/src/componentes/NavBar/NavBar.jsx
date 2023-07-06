@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
+import styles from './NavBar.module.css'
 
 const NavBar = () => {
     return(
-        <div>
+        <div className={styles.container}>
             <button>
                 <Link to='/form'>Boton a Form</Link>
             </button>

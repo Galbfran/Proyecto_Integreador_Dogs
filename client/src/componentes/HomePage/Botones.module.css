@@ -1,0 +1,20 @@
+.container{
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(190, 190, 190 , 0.7);
+    border: solid 1px black;
+    border-radius: 15px;
+    margin-top: 10px;
+
+}
+
+.container button {
+    background-color: rgb(190, 190, 190 , 0.7);
+    border: solid 1px black;
+    border-radius: 15px;
+    size: 10px;
+    padding: 5px;
+}
+

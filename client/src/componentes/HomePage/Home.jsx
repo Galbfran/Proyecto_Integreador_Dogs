@@ -7,8 +7,9 @@ import { useEffect , useState} from "react";
 import { getAllDogs } from "../../redux/actions";
 
 //componentes
-import NavBar from "../NavBar";
+import NavBar from "../NavBar/NavBar";
 import CardDog from "../Dogs/CardDog";
+import Buttons from "./Botones";
 //css
 import styles from './Home.module.css'
 
@@ -16,14 +17,14 @@ const Home = () => {
     const ITEM_PAGE = 8
 
     const dispatch = useDispatch();
-    const [ dogs , setDogs] = useState(useSelector(state => state.allDogs))
+    const [ dogs ] = useState(useSelector(state => state.allDogs))
     
     useEffect(() => {
         dispatch(getAllDogs());
-    }, [])
+    }, [dispatch])
     
     const [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
-    const [ currentPage , setCurrentPage] = useState(1);
+    const [ currentPage , setCurrentPage] = useState([1]);
 
     const nextHandler = () => {
         const totalElement = dogs.length;
@@ -48,11 +49,7 @@ const Home = () => {
                 <NavBar/>
             </div>
             <article >
-                <div>
-                    <p> Pagina Numero {currentPage +1} - {dogs.length / 8 + 0.5}</p> {/* corregir despues */}
-                    <button onClick={() => prevHandler()}>Anterior</button>
-                    <button onClick={() => nextHandler()}>Siguente</button>
-                </div>
+                <Buttons  className={styles.buttons} prevHandler={prevHandler} nextHandler={nextHandler} numPage={currentPage} totalPage={dogs.length}/>
                 <div className={styles.container}>
                 {   dogsRender.map(dog => {
                         return <CardDog 
