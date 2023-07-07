@@ -16,3 +16,7 @@
     size: 10px;
     padding: 5px;
 }
+
+.container button:hover{
+    background-color: rgba(247, 246, 246, 0.7);
+}

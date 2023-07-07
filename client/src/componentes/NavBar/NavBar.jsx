@@ -5,13 +5,16 @@ const NavBar = () => {
     return(
         <div className={styles.container}>
             <button>
-                <Link to='/form'>Boton a Form</Link>
+                <Link to='/'>Inicio</Link>
             </button>
             <button>
                 <Link to='/home'>Home</Link>
             </button>
             <button>
-                <Link to='/'>Inicio</Link>
+                <Link to='/form'>Boton a Form</Link>
+            </button>
+            <button>
+                <Link to='/about'>About</Link>
             </button>
         </div>
     )
