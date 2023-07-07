@@ -18,13 +18,17 @@ const Home = () => {
 
     const dispatch = useDispatch();
     const [ dogs ] = useState(useSelector(state => state.allDogs))
+    const [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
+    const [ currentPage , setCurrentPage] = useState([1]);
     
     useEffect(() => {
         dispatch(getAllDogs());
     }, [dispatch])
     
-    const [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
-    const [ currentPage , setCurrentPage] = useState([1]);
+    useEffect(() => {
+        setDogsRender(dogs.slice(0, ITEM_PAGE));
+        setCurrentPage(1);
+    }, [dogs]);
 
     const nextHandler = () => {
         const totalElement = dogs.length;

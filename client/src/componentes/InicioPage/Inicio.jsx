@@ -1,12 +1,31 @@
 import { Link } from "react-router-dom";
+import styles from './Inicio.module.css'
 
 const Inicio = () => {
+    const imagen = 'https://media.licdn.com/dms/image/D4D35AQHr0PdT6AGMvg/profile-framedphoto-shrink_400_400/0/1686004446866?e=1689292800&v=beta&t=XuZXM4upAsNEWXhvEVfnby2T-T90aEPqDzvZzNhGglY'
+    const nombre = "Galbiati Franco"
+    const corte = "Ft37-a"
+    const github = "https://github.com/Galbfran"
+    const linkedin = "Galbiati Franco"
+    
+
     return(
         <div>
-            <h1>Estoy en inicio</h1>
-            <button>
-                <Link to='/home'>Boton a Home</Link>
-            </button>
+            <h1>Proyecto Integrador Dogs</h1>
+            <div>
+                <div className={styles.container}>
+                    <img src={imagen} alt={nombre} className={styles.imagen}/>
+                <div className={styles.data}>
+                    <h2>Nombre: {nombre}</h2>
+                    <p>Corte: {corte}</p>
+                    <p>Github: {github}</p>
+                    <p>Linkedin: {linkedin}</p>
+                    <button>
+                        <Link to={'/home'}>Entrar al Home</Link>
+                    </button>
+                </div>
+                </div>
+            </div>
         </div>
     )
 }

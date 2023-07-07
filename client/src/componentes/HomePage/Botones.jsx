@@ -7,7 +7,7 @@ const Buttons = ({prevHandler , nextHandler , numPage , totalPage}) => {
     return(
         <div className={styles.container}>
             <button onClick={() => prevHandler()}>Anterior</button>
-            <p> Pagina Numero {numPage} - {total}</p> {/* corregir despues */}
+            <p> Pagina Numero {numPage +1} - {total}</p> {/* corregir despues */}
             <button onClick={() => nextHandler()}>Siguente</button>
         </div>
     )
