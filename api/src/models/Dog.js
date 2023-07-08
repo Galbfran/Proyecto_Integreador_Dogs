@@ -19,15 +19,15 @@ module.exports = (sequelize) => {
       allowNull: false
     },
     Altura:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
     },
     Peso:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
     },
     Anios_Vida:{
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
       allowNull: false
     },
     Temperamento:{

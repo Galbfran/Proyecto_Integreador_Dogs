@@ -1,26 +1,21 @@
-
-
+//hooks
+import { useDispatch , useSelector} from "react-redux";
+import { useEffect } from "react";
 //componentes
 import Formulario from "./componentsForm/Formulario";
 import NavBar from "../NavBar/NavBar";
-
-
-
-//styles
+//redux-action
+import { getTemperament } from "../../redux/actions";
 
 
 const Form = () => {
-    const arrayCheck = [
-        "Active",
-        "Adaptable",
-        "Adventurous",
-        "Affectionate",
-        "Aggressive",
-        "Agile",
-        "Alert",
-        'holamundo'
-    ]
-    
+    const dispatch = useDispatch();
+    const arrayCheck = useSelector(state => state.temperament)
+
+    useEffect(() => {
+        dispatch(getTemperament())
+    }, [dispatch])
+
     return(
         <section>
                 <NavBar/>

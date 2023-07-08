@@ -1,8 +1,9 @@
-import { GET_DOGS , DOGS_DETAIL , CLEAN_DETAIL} from "./action-types";
+import { GET_DOGS , DOGS_DETAIL , CLEAN_DETAIL , GET_TEMPERAMENT} from "./action-types";
 
 const initialState = {
     allDogs : [],
-    dogsDetail : []
+    dogsDetail : [],
+    temperament: []
 }
 
 const reducer = (state = initialState , action ) => {
@@ -21,6 +22,11 @@ const reducer = (state = initialState , action ) => {
             return{
                 ...state,
                 dogsDetail: {}
+            }
+        case GET_TEMPERAMENT:
+            return{
+                ...state,
+                temperament: action.payload
             }
         default:
             return {...state}
