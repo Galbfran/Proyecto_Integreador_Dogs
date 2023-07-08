@@ -17,23 +17,25 @@ const Home = () => {
     const ITEM_PAGE = 8
 
     const dispatch = useDispatch();
-    const [ dogs ] = useState(useSelector(state => state.allDogs))
-    const [ currentPage , setCurrentPage] = useState([1]);
-    
     useEffect(() => {
         dispatch(getAllDogs());
     }, [ dispatch])
+
+    const [ dogs]  = useState(useSelector(state => state.allDogs))
+
     
+    const [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
     useEffect(() => {
         setDogsRender(dogs.slice(0, ITEM_PAGE));
         setCurrentPage(1);
     }, [dogs]);
     
-    const [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
     
+    const [ currentPage , setCurrentPage] = useState(0);
+    console.log(currentPage)
     const nextHandler = () => {
         const totalElement = dogs.length;
-        const nextPage = currentPage + 1 ;
+        const nextPage = currentPage +1;
         const firstIndex = nextPage * ITEM_PAGE;
         if (firstIndex >= totalElement) return;
         setDogsRender([...dogs].splice(firstIndex , ITEM_PAGE));
