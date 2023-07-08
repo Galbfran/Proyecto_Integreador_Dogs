@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
-    gap: 5px;
+    gap: 10px;
     margin-top: 20px;
     margin-bottom: 10px;
     border-radius: 30px;
@@ -31,35 +31,35 @@
     background-color: rgba(247, 246, 246, 0.7);
 }
 
-.warning {
-    border: solid red 1px;
-    border-radius: 0.2em;
-}
-
-.danger{
-    font-size: 10px;
-    color: red;
-    margin-left: 10em;
-}
-
 .datos{
     width: 700px;
-    display: grid;
-    grid-template-columns: auto auto auto auto ;
-    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
     align-items: center;
     justify-content: space-around;
     gap: 10px;
 }
 
 .datos input{
-    width: 100px;
+    width: 300px;
 }
 
 
 .datosTexto{
     display: flex;
-    margin-top: 5px;
+    margin-top: 10px;
+    gap: 10px;
     align-items: center;
     justify-content: space-between;
+}
+
+.warning {
+    border: solid red 1px;
+    border-radius: 0.2em;
+}
+
+.danger{
+    font-size: 15px;
+    color: red;
 }
