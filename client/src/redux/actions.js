@@ -1,4 +1,4 @@
-import { GET_DOGS , DOGS_DETAIL , CLEAN_DETAIL  , GET_TEMPERAMENT} from "./action-types";
+import { GET_DOGS , DOGS_DETAIL , CLEAN_DETAIL  , GET_TEMPERAMENT , CLEAN_DOGS} from "./action-types";
 import axios from 'axios'
 
 export const getAllDogs = () => {
@@ -24,4 +24,8 @@ export const getTemperament = () => {
         let response = await axios.get('http://localhost:3001/temperaments');
         return dispatch({ type: GET_TEMPERAMENT , payload: response.data })//modificar despues para perros
     }
+}
+
+export const cleanDogs = () => {
+    return { type: CLEAN_DOGS }
 }
