@@ -30,12 +30,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    Temperamento:{
-      type: DataTypes.TEXT,
+    Temperament:{
+      type: DataTypes.STRING
     },
     BaseDatos:{
       type: DataTypes.BOOLEAN,
       defaultValue: true
     }
-  });
+  },{ timestamps: false});
 };

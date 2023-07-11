@@ -1,7 +1,8 @@
 
-const { Dog } = require('../db');
+const { Dog , Temperaments } = require('../db');
 const apiDogID = require('./consultasApi/apiDogID');
 const fetchData = require('./consultasApi/rutasApi')
+const pushTemperaments = require('./consultasApi/pushTemperaments')
 
 
 
@@ -12,7 +13,9 @@ const createDog = async (imagen, nombre , altura , peso , anios_vida , temperame
         Altura: altura,
         Peso: peso,
         Anios_Vida: anios_vida,
+        Temperament :temperamento
     });
+
     return newDog;
 }
 
@@ -23,6 +26,7 @@ const getAllDogs = async() => {
 }
 
 const getDogByRaza = async(ID , source) => {
+
     /*   if (source === 'api'){
         const response = await apiDogID(ID);
         let responseNuevo = JSON.parse(response) 
@@ -49,8 +53,7 @@ const getDogByRaza = async(ID , source) => {
     }; */
     const allDogs = await getAllDogs();
     let dogByID = allDogs.find(dog => {
-        if ( typeof ID === 'numer'){
-        
+        if ( source === 'api'){
             return dog.ID_Dogs === Number(ID)
         }else{
             return dog.ID_Dogs === ID
@@ -76,8 +79,10 @@ const getTemperaments = async () => {
         temperament =  temperament.concat(arrayTemp);
     })
     let arraySinRepetidos = temperament.filter((value, index, self) =>  self.indexOf(value) === index);
+    pushTemperaments(arraySinRepetidos.sort())
     return arraySinRepetidos.sort()
 }
+
 
 
 module.exports = {
