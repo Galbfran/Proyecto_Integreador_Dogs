@@ -4,14 +4,18 @@ import { useEffect , useState } from "react";
 import CardDog from "../Dogs/CardDog";
 import Buttons from "./Botones";
 import SearchBar from "./SearchBar";
-
+import {filtrado} from "./filtrado";
 
 import styles from './Home.module.css'
+
+
 
 const  ContainerDogs = ({dogs , arrayCheck}) => {
     const [checkbox , setCheckbox] = useState([arrayCheck]);
     const [temperaments , setTemperaments] = useState([]);
-        useEffect(() => {
+    let [listaDogs, setListaDogs] = useState(dogs);
+
+    useEffect(() => {
         setCheckbox([...arrayCheck])
     },[arrayCheck])
     
@@ -19,31 +23,35 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         const {  value , checked} = event.target;
         if(checked){
             setTemperaments([...temperaments, value])
-            console.log(temperaments , 'truel')
         }else {
             setTemperaments(temperaments.filter(elim => elim !== value ))
-            console.log(temperaments , 'faslse')
         }
     }
     
+
     //paginado
     const ITEM_PAGE = 8
-    let [dogsRender , setDogsRender] = useState([...dogs].splice(0 , ITEM_PAGE));
+    let [dogsRender , setDogsRender] = useState([...listaDogs]);
+
+    useEffect(() => {
+        setListaDogs(dogs); // Establecer la lista completa de perros al iniciar la página
+    }, [dogs]);
     
     useEffect(() => {
-        setDogsRender(dogs.slice(0, ITEM_PAGE));
+        setDogsRender(listaDogs.slice(0, ITEM_PAGE));
         setCurrentPage(1);
-    }, [ dogs]);
+    }, [ listaDogs]);
     
+
 
     const [ currentPage , setCurrentPage] = useState(0);
 
     const nextHandler = () => {
-        const totalElement = dogs.length;
+        const totalElement = listaDogs.length;
         const nextPage = currentPage +1;
         const firstIndex = nextPage * ITEM_PAGE;
         if (firstIndex >= totalElement) return;
-        setDogsRender([...dogs].splice(firstIndex , ITEM_PAGE));
+        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));
         setCurrentPage(nextPage);
     }
 
@@ -51,8 +59,20 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         const prevPage = currentPage - 1;
         if (prevPage < 0) return;
         const firstIndex = prevPage * ITEM_PAGE;
-        setDogsRender([...dogs].splice(firstIndex , ITEM_PAGE));
+        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));
         setCurrentPage(prevPage);
+    }
+
+    const filterHandler = (tipo) => {
+        let filteredDogs;
+        if (tipo === 'ALL_DOGS') {
+            filteredDogs = dogs; // Utilizar el estado dogs directamente
+            } else {
+            filteredDogs = filtrado(listaDogs, tipo , temperaments); // Aplicar filtro al estado listaDogs
+            }
+        setListaDogs(filteredDogs);
+        setDogsRender(filteredDogs.slice(0, ITEM_PAGE));
+        setCurrentPage(1);
     }
 
 
@@ -74,7 +94,7 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                 }
             </div>
             <div className={styles.container}>
-                <SearchBar checkbox={checkbox}  handlerCkeckChange={handlerCkeckChange}/>
+                <SearchBar checkbox={checkbox}  handlerCkeckChange={handlerCkeckChange} filterHandler={filterHandler}/>
             </div>
         </div>
     )

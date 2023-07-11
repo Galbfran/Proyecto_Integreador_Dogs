@@ -1,19 +1,39 @@
 import styles from './Botones.module.css'
 import CkeckBox from '../FormPage/componentsForm/CheckBox';
+import { 
+    API,
+    BASE_DATOS,
+    ASCENDENTE_ID,
+    DESCENDENTE_ID,
+    ALFABETICO_AZ,
+    ALFABETICO_ZA,
+    PESO_MIN_MAX,
+    PESO_MAX_MIN,
+    TEMPERAMENTO,
+    ALL_DOGS
+} from './filtrado';
 
 
-const SearchBar = ({ handlerCkeckChange , checkbox}) => {
-    
+const SearchBar = ({ handlerCkeckChange , checkbox , filterHandler}) => {
+    let filtros = [
+        API,
+        BASE_DATOS,
+        ASCENDENTE_ID,
+        DESCENDENTE_ID,
+        ALFABETICO_AZ,
+        ALFABETICO_ZA,
+        PESO_MIN_MAX,
+        PESO_MAX_MIN,
+        TEMPERAMENTO,
+        ALL_DOGS
+    ]
 
     return(
         <div className={styles.searchbar}>
             <div className={styles.container}>
-                <button>Api</button>
-                <button>BD</button>
-                <button>ascendente id</button>
-                <button>descendente id</button>
-                <button>alfavetico</button>
-                <button>peso</button>
+            {
+                filtros.map(filtro => <button onClick={() => filterHandler(filtro)} >{filtro}</button>)
+            }
             </div>
             <div  className={styles.containerCkeck} >
             {

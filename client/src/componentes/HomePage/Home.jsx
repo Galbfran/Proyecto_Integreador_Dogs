@@ -8,10 +8,10 @@ import { getAllDogs , cleanDogs , getTemperament} from "../../redux/actions";
 
 //componentes
 import NavBar from "../NavBar/NavBar";
-import SearchBar from "./SearchBar";
+
 import ContainerDogs from "./ContainerDogs";
-//css
-import styles from './Home.module.css'
+
+
 
 
 const Home = () => {
@@ -35,9 +35,7 @@ const Home = () => {
             <article >
                 <ContainerDogs dogs={dogs} arrayCheck={arrayCheck} />
             </article>
-            <div>
-              {/*   <SearchBar className={styles.buttons} arrayCheck={arrayCheck}/> */}
-            </div>
+            
         </section>
     )
 }

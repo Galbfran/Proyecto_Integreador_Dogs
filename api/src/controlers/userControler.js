@@ -48,7 +48,14 @@ const getDogByRaza = async(ID , source) => {
         return resp_BD
     }; */
     const allDogs = await getAllDogs();
-    let dogByID = allDogs.find(dog => dog.ID_Dogs === Number(ID));
+    let dogByID = allDogs.find(dog => {
+        if ( typeof ID === 'numer'){
+        
+            return dog.ID_Dogs === Number(ID)
+        }else{
+            return dog.ID_Dogs === ID
+        }
+    });
     if(!dogByID) throw Error(`El perro con numero ${ID} no se encuentra`)
     return dogByID;
 }

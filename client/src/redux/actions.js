@@ -11,7 +11,8 @@ export const getAllDogs = () => {
 export const detailDogs = (id) => {
     return async (dispatch) => {
         let response = await axios.get('http://localhost:3001/dogs/'+ id);
-        return dispatch({ type: DOGS_DETAIL , payload: response.data })//modificar despues para perros
+        console.log(response)
+        return dispatch({ type: DOGS_DETAIL , payload: response?.data })//modificar despues para perros
     }
 }
 
