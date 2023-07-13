@@ -17,10 +17,9 @@ const allDogsHandler = async (req , res) => {
         const allDogs = await getAllDogs();
         return res.status(200).json(allDogs);
     
-} catch (error) {
-    return res.status(400).json({error : error.message})
-}
-
+    } catch (error) {
+        return res.status(400).json({error : error.message})
+    }
 }
 
 const dogsByRazaHandler = async (req , res) => {
@@ -34,13 +33,10 @@ const dogsByRazaHandler = async (req , res) => {
     }
 }
 
-
-
 const temperamentsHandler = async (req , res) => {
     try {
         const temperament = await getTemperaments()
         res.status(200).json(temperament)
-        
     } catch (error) {
         return res.status(400).json({error : error.message})
     }
@@ -48,9 +44,9 @@ const temperamentsHandler = async (req , res) => {
 
 const postDogsHandler = async (req , res) => {
 try {
-    const {imagen , nombre , altura , peso , anios_vida, temperamento } = req.body;
+    const {imagen , nombre , altura , peso , anios_vida,temperamento } = req.body;
     if(!imagen || !nombre || !altura || !peso || !anios_vida) throw Error('Faltan datos para crear un nuevo perro')
-    const newDog = await createDog(imagen , nombre , altura , peso , anios_vida, temperamento);
+    const newDog = await createDog(imagen , nombre , altura , peso , anios_vida , temperamento);
     return res.status(201).json(newDog);
 } catch (error) {
     return res.status(400).json({error : error.message})

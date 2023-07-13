@@ -27,30 +27,6 @@ const getAllDogs = async() => {
 
 const getDogByRaza = async(ID , source) => {
 
-    /*   if (source === 'api'){
-        const response = await apiDogID(ID);
-        let responseNuevo = JSON.parse(response) 
-        console.log(responseNuevo)
-        const { weight, height, id, name, life_span, temperament, reference_image_id } = responseNuevo;
-        if(!id){
-            throw Error('Perro no encontrado')
-        }
-        const dogObjet = {
-            ID_Dogs: id,
-            Imagen: reference_image_id,
-            Nombre: name,
-            Altura: height.metric,
-            Peso: weight.metric,
-            Anios_Vida: life_span,
-            Temperamento: temperament,
-            BaseDatos: false
-        };
-        return dogObjet;
-    }else {
-        const resp_BD = await Dog.findByPk(ID)
-        if(resp_BD === null) throw Error('El perro buscado no existe')
-        return resp_BD
-    }; */
     const allDogs = await getAllDogs();
     let dogByID = allDogs.find(dog => {
         if ( source === 'api'){
@@ -67,6 +43,7 @@ const getDogByRaza = async(ID , source) => {
 const getDogName = async(name) => {
     const allDogs = await getAllDogs();
     let dogByName = allDogs.find(dog => dog.Nombre === name.toLowerCase());
+
     if(!dogByName) throw Error(`El perro con name ${name} no se encuentra`)
     return dogByName;
 }
