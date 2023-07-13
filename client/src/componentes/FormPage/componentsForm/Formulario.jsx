@@ -62,10 +62,15 @@ const Formulario = ({arrayCheck}) => {
         }
     }
 
-    const handlerSubmit = (event) => {
+    const handlerSubmit = async(event) => {
         event.preventDefault()
-        const respons = posteoDog(inputs , temperaments)
-        alert(respons)
+        try {
+            const respons = await posteoDog(inputs , temperaments)
+            alert(respons)
+            console.log(respons)
+        } catch (error) {
+            alert(error.message)
+        }
     }
 
     return(

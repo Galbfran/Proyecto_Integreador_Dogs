@@ -4,7 +4,10 @@ import { useEffect , useState } from "react";
 import CardDog from "../Dogs/CardDog";
 import Buttons from "./Botones";
 import SearchBar from "./SearchBar";
+import CardCarga from "../Carga/CardCarga";
+
 import {filtrado} from "./filtrado";
+import dogsVacio from "../../redux/dogsVacio";
 
 import styles from './Home.module.css'
 
@@ -21,10 +24,13 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
     
     const handlerCkeckChange = (event) =>{
         const {  value , checked} = event.target;
-        if(checked){
-            setTemperaments([...temperaments, value])
-        }else {
-            setTemperaments(temperaments.filter(elim => elim !== value ))
+        console.log(checkbox)
+        console.log(temperaments.length + 1) 
+        if (temperaments.length) return
+        if (checked) {
+            setTemperaments(temperaments.filter((elim) => elim !== value));
+        } else {
+            setTemperaments([...temperaments, value]);
         }
     }
     
@@ -82,6 +88,7 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                 <Buttons className={styles.buttons} prevHandler={prevHandler} nextHandler={nextHandler} numPage={currentPage} totalPage={dogs.length}/>
             </div>
             <div className={styles.container}>
+                
             {   dogsRender.map(dog => {
                         return <CardDog 
                             key={dog?.ID_Dogs}
@@ -92,6 +99,19 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                             peso={dog?.Peso}
                         />})
                 }
+            {
+                dogsRender.length === 0 && (
+                    dogsVacio.map((dog , index)=> {
+                        
+                        return <CardCarga
+                            key={index}
+                            name={dog.Nombre}
+                            temperamento={dog.Temperamento}
+                            peso={dog.Peso}
+                        />
+                    })
+                )
+            }
             </div>
             <div className={styles.container}>
                 <SearchBar checkbox={checkbox}  handlerCkeckChange={handlerCkeckChange} filterHandler={filterHandler}/>

@@ -13,7 +13,7 @@ const createDog = async (imagen, nombre , altura , peso , anios_vida , temperame
         Altura: altura,
         Peso: peso,
         Anios_Vida: anios_vida,
-        Temperament :temperamento
+        Temperamento :temperamento
     });
 
     return newDog;

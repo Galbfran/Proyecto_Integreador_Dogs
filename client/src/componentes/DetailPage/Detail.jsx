@@ -8,6 +8,7 @@ import { detailDogs , cleanDetail} from "../../redux/actions";
 
 //compenents
 import NavBar from "../NavBar/NavBar";
+
 //css
 import styles from './Detail.module.css'
 
@@ -27,15 +28,16 @@ const Detail = () => {
         <section >
                 <NavBar/>
             <div className={styles.container}>
-                    <img src={Imagen} alt={Nombre} className={styles.imagen}/>
+                    { Nombre && <img src={Imagen} alt={Nombre} className={styles.imagen}/>}
+                    { !Nombre && <img src={'https://media.tenor.com/YXS2BDyDWtwAAAAM/video-games-cargando.gif'} alt={'carga'} className={styles.imagen}/>}
                 
                 <div className={styles.data}>
-                    <h2>Raza: {Nombre}</h2>
-                    <p>ID_Dog: {ID_Dogs}</p>
-                    <p>Altura: {Altura}</p>
-                    <p>Peso: {Peso}</p>
-                    <p>Vida: {Anios_Vida}</p>
-                    <p>Temperamento: {Temperamento}</p>
+                    <h2>Raza: { (!Nombre && "Cargando...") || Nombre}</h2>
+                    <p>ID_Dog: { (!ID_Dogs && "Cargando...") || ID_Dogs}</p>
+                    <p>Altura: { (!ID_Dogs && "Cargando..." )|| Altura}</p>
+                    <p>Peso: {(!Nombre && "Cargando...") || Peso}</p>
+                    <p>Vida: {(!Nombre && "Cargando...") || Anios_Vida}</p>
+                    <p>Temperamento: {(!Nombre && "Cargando...") || Temperamento}</p>
                     <button>
                         <Link to={'/home'}>Volver al Home</Link>
                     </button>

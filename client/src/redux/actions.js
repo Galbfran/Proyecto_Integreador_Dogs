@@ -1,18 +1,29 @@
 import { GET_DOGS , DOGS_DETAIL , CLEAN_DETAIL  , GET_TEMPERAMENT , CLEAN_DOGS} from "./action-types";
+import dogsVacio from './dogsVacio'
+import {unDogs , tempVacio} from './dogsVacio'
 import axios from 'axios'
 
 export const getAllDogs = () => {
     return async (dispatch) => {
-        let response = await axios.get('http://localhost:3001/dogs/');
-        return dispatch({ type: GET_DOGS , payload: response.data })//modificar despues para perros
+        try {
+            let response = await axios.get('http://localhost:3001/dogs/');
+            return dispatch({ type: GET_DOGS , payload: response.data })//modificar despues para perros
+            
+        } catch (error) {
+            return dispatch({ type: GET_DOGS , payload: dogsVacio })
+        }
+        
     }
 }
 
 export const detailDogs = (id) => {
     return async (dispatch) => {
-        let response = await axios.get('http://localhost:3001/dogs/'+ id);
-        console.log(response)
-        return dispatch({ type: DOGS_DETAIL , payload: response?.data })//modificar despues para perros
+        try {
+            let response = await axios.get('http://localhost:3001/dogs/'+ id);
+            return dispatch({ type: DOGS_DETAIL , payload: response?.data })//modificar despues para perros
+        } catch (error) {
+            return dispatch({ type: DOGS_DETAIL , payload: unDogs })
+        }
     }
 }
 
@@ -22,8 +33,12 @@ export const cleanDetail = () => {
 
 export const getTemperament = () => {
     return async (dispatch) => {
-        let response = await axios.get('http://localhost:3001/temperaments');
-        return dispatch({ type: GET_TEMPERAMENT , payload: response.data })//modificar despues para perros
+        try {
+            let response = await axios.get('http://localhost:3001/temperaments');
+            return dispatch({ type: GET_TEMPERAMENT , payload: response.data })//modificar despues para perros
+        } catch (error) {
+            return dispatch({ type: GET_TEMPERAMENT , payload: tempVacio })
+        }
     }
 }
 

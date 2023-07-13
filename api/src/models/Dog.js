@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    Temperament:{
+    Temperamento:{
       type: DataTypes.STRING
     },
     BaseDatos:{
