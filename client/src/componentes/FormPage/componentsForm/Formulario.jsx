@@ -28,7 +28,7 @@ const Formulario = ({arrayCheck}) => {
         AniosMin:'',
         AniosMax:'',
     });
-
+    console.log(inputs.PesoMax)
     const [temperaments , setTemperaments] = useState([]);
 
     const [checkbox , setCheckbox] = useState([arrayCheck]);
@@ -38,7 +38,7 @@ const Formulario = ({arrayCheck}) => {
     },[arrayCheck])
 
 
-    const arrayInputs = Object.keys(inputs)
+    const arrayInputs = Object.keys(inputs).filter(key => key !== 'Nombre')
     
 
     const handlerChange = (event) => {
@@ -72,17 +72,21 @@ const Formulario = ({arrayCheck}) => {
             alert(error.message)
         }
     }
-
     return(
         <form className={styles.container}  onSubmit={handlerSubmit}>
+                    <div className={styles.datosTexto}>
+                        <label htmlFor={'Nombre'}>{`Dato a Ingresar: Nombre`}</label>
+                        <input type="text" id={'Nombre'} name={'Nombre'} placeholder={`Ingrese ${'Nombre'}: ` } value={inputs.Nombre} onChange={handlerChange} className={errors.Nombre && 'warning'}/> 
+                        {errors.Nombre && <span className={styles.danger}>{errors.Nombre}</span>}
+                    </div>
+
             {
             arrayInputs.map(dato => {
                 return(
                     <div className={styles.datosTexto}>
                         <label htmlFor={dato}>{`Dato a Ingresar: ${dato}`}</label>
-                        <input type="text" id={dato} name={dato} placeholder={`Ingrese ${dato}: ` } value={inputs[dato]} onChange={handlerChange} className={errors[dato] && 'warning'}/> 
+                        <input type="number" id={dato} name={dato} placeholder={`Ingrese ${dato}: ` } value={inputs[dato]} onChange={handlerChange} className={errors[dato] && 'warning'}/> 
                         {errors[dato] && <span className={styles.danger}>{errors[dato]}</span>}
-                        {!errors[dato] && <span>Con Validacion</span>}
                     </div>
                     )
                 })
@@ -99,7 +103,6 @@ const Formulario = ({arrayCheck}) => {
                     })
                 }
             </div>
-                    
             <div className={styles.button}>
                 <button >Crear Perro</button>
                 <button type="reset">Reset</button>
