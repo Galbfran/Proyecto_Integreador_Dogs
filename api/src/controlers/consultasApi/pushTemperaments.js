@@ -2,7 +2,7 @@ const { Dog , Temperaments } = require('../../db');
 
 const pushTemperaments = async(temps) => {
     let temperamentArray = temps.map(temp => {
-        return {Nombre : temp}
+        return {nombre : temp}
         })
     const tempcargados = await Temperaments.bulkCreate(temperamentArray);
 

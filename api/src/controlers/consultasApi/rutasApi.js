@@ -16,14 +16,14 @@ try {
     let objetoResumido = response.data.map(dog => {
         const { weight, height, id, name, life_span, temperament, image } = dog;
         const dogObjet = {
-            ID_Dogs: id,
-            Imagen: image.url,
-            Nombre: name.toLowerCase(),
-            Altura: height.metric,
-            Peso: weight.metric,
-            Anios_Vida: life_span,
-            Temperamento: temperament,
-            BaseDatos: false
+            idDogs: id,
+            imagen: image.url,
+            nombre: name.toLowerCase(),
+            altura: height.metric,
+            peso: weight.metric,
+            vidaEstimada: life_span,
+            temperamento: temperament,
+            baseDatos: false
         };
         return dogObjet
     })

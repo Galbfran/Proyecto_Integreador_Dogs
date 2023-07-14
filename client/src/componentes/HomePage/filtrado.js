@@ -29,39 +29,39 @@ export const filtrado = ( listaDogs ,tipo , temperaments) => {
     console.log(temperaments)
     switch(tipo){
             case API:
-                let dogsApi =  listaDogs.filter(dogs => dogs.BaseDatos === false);
+                let dogsApi =  listaDogs.filter(dogs => dogs.baseDatos === false);
                 return dogsApi
             case BASE_DATOS:
-                let dogsBD =  listaDogs.filter(dogs => dogs.BaseDatos === true);
+                let dogsBD =  listaDogs.filter(dogs => dogs.baseDatos === true);
                 return dogsBD
             case ALFABETICO_AZ:
-                return listaDogs.sort((a , b) =>  a.Nombre.localeCompare(b.Nombre) );
+                return listaDogs.sort((a , b) =>  a.nombre.localeCompare(b.nombre) );
             case ALFABETICO_ZA:
-                return listaDogs.sort((a , b) =>  b.Nombre.localeCompare(a.Nombre) );
+                return listaDogs.sort((a , b) =>  b.nombre.localeCompare(a.nombre) );
             case ASCENDENTE_ID:
-                return listaDogs.sort((a , b) => a.ID_Dogs - b.ID_Dogs);
+                return listaDogs.sort((a , b) => a.idDogs - b.idDogs);
             case DESCENDENTE_ID:
-                return listaDogs.sort((a , b) => b.ID_Dogs - a.ID_Dogs);
+                return listaDogs.sort((a , b) => b.idDogs - a.idDogs);
             case PESO_MIN_MAX:
                 return listaDogs.sort((a, b) => {
-                    const pesoA = getPesoMinimo(a.Peso);
-                    const pesoB = getPesoMinimo(b.Peso);
+                    const pesoA = getPesoMinimo(a.peso);
+                    const pesoB = getPesoMinimo(b.peso);
                     return pesoA - pesoB;
                 });
             case PESO_MAX_MIN:
                 return listaDogs.sort((a, b) => {
-                    const pesoA = getPesoMaximo(a.Peso);
-                    const pesoB = getPesoMaximo(b.Peso);
+                    const pesoA = getPesoMaximo(a.peso);
+                    const pesoB = getPesoMaximo(b.peso);
                     return pesoB - pesoA;
                 });
             case TEMPERAMENTO:
-                let DogsTemp = listaDogs.filter((objeto) => {
-                    if (objeto.Temperamento && temperaments.some(temp => objeto.Temperamento.includes(temp))) {
+                let dogsTemp = listaDogs.filter((objeto) => {
+                    if (objeto.temperamento && temperaments.some(temp => objeto.temperamento.includes(temp))) {
                         return true;
                     }
                     return false;
                     });
-                return DogsTemp
+                return dogsTemp
             case ALL_DOGS:
                 return listaDogs
         default:

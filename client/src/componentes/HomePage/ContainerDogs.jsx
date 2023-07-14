@@ -91,12 +91,12 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                 
             {   dogsRender.map(dog => {
                         return <CardDog 
-                            key={dog?.ID_Dogs}
-                            id={dog?.ID_Dogs}
-                            image={dog?.Imagen}
-                            name={dog?.Nombre}
-                            temperamento={dog?.Temperamento}
-                            peso={dog?.Peso}
+                            key={dog?.idDogs}
+                            id={dog?.idDogs}
+                            image={dog?.imagen}
+                            name={dog?.nombre}
+                            temperamento={dog?.temperamento}
+                            peso={dog?.peso}
                         />})
                 }
             {
@@ -105,9 +105,9 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                         
                         return <CardCarga
                             key={index}
-                            name={dog.Nombre}
-                            temperamento={dog.Temperamento}
-                            peso={dog.Peso}
+                            name={dog.nombre}
+                            temperamento={dog.temperamento}
+                            peso={dog.peso}
                         />
                     })
                 )

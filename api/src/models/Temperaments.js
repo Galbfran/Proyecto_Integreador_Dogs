@@ -4,13 +4,13 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
     sequelize.define('temperaments', {
-    ID_Temp: {
+    idTemp: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
         autoIncrement: true,
     },
-    Nombre:{
+    nombre:{
         type: DataTypes.STRING,
     }
 

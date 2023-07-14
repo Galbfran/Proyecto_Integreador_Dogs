@@ -10,26 +10,24 @@ import styles from './Formulario.module.css'
 
 const Formulario = ({arrayCheck}) => {
     const [inputs , setInputs] = useState({
-        Nombre:'',
-        PesoMin:'',
-        PesoMax:'',
-        AlturaMin:'',
-        AlturaMax:'',
-        AniosMin:'',
-        AniosMax:'',
+        nombre:'',
+        pesoMin:'',
+        pesoMax:'',
+        alturaMin:'',
+        alturaMax:'',
+        añosMin:'',
+        añosMax:'',
     });
-
     const [errors , setErrors] = useState({
-        Nombre:'',
-        PesoMin:'',
-        PesoMax:'',
-        AlturaMin:'',
-        AlturaMax:'',
-        AniosMin:'',
-        AniosMax:'',
+        nombre:'',
+        pesoMin:'',
+        pesoMax:'',
+        alturaMin:'',
+        alturaMax:'',
+        añosMin:'',
+        añosMax:'',
     });
-    console.log(inputs.PesoMax)
-    const [temperaments , setTemperaments] = useState([]);
+    const [temperaments , setTemperaments] = useState([ ]);
 
     const [checkbox , setCheckbox] = useState([arrayCheck]);
 
@@ -37,10 +35,8 @@ const Formulario = ({arrayCheck}) => {
         setCheckbox([...arrayCheck])
     },[arrayCheck])
 
-
-    const arrayInputs = Object.keys(inputs).filter(key => key !== 'Nombre')
+    const arrayInputs = Object.keys(inputs).filter(key => key !== 'nombre')
     
-
     const handlerChange = (event) => {
         const { name, value} = event.target;
         setInputs({
@@ -48,10 +44,12 @@ const Formulario = ({arrayCheck}) => {
             [name ] : value
         });
         validate({...inputs, [name]: value})
-        setErrors(validate({
-            ...inputs,
-            [name] : value
-        }));
+        setTimeout(() => {
+            setErrors(validate({
+                ...inputs,
+                [name]: value
+            }));
+        }, 1000);
     }
     const handlerCkeckChange = (event) =>{
         const {  value , checked} = event.target;
@@ -67,19 +65,29 @@ const Formulario = ({arrayCheck}) => {
         try {
             const respons = await posteoDog(inputs , temperaments)
             alert(respons)
-            console.log(respons)
         } catch (error) {
             alert(error.message)
         }
+        setInputs({
+            nombre:'',
+            pesoMin:'',
+            pesoMax:'',
+            alturaMin:'',
+            alturaMax:'',
+            añosMin:'',
+            añosMax:'',
+        })
+        setTemperaments([ ])
+
+
     }
     return(
         <form className={styles.container}  onSubmit={handlerSubmit}>
                     <div className={styles.datosTexto}>
-                        <label htmlFor={'Nombre'}>{`Dato a Ingresar: Nombre`}</label>
-                        <input type="text" id={'Nombre'} name={'Nombre'} placeholder={`Ingrese ${'Nombre'}: ` } value={inputs.Nombre} onChange={handlerChange} className={errors.Nombre && 'warning'}/> 
-                        {errors.Nombre && <span className={styles.danger}>{errors.Nombre}</span>}
+                        <label htmlFor={'nombre'}>{`Dato a Ingresar: nombre`}</label>
+                        <input type="text" id={'nombre'} name={'nombre'} placeholder={`Ingrese ${'nombre'}: ` } value={inputs.nombre} onChange={handlerChange} className={errors.nombre && 'warning'}/> 
+                        {errors.nombre && <span className={styles.danger}>{errors.nombre}</span>}
                     </div>
-
             {
             arrayInputs.map(dato => {
                 return(
@@ -92,7 +100,7 @@ const Formulario = ({arrayCheck}) => {
                 })
             }
             <div className={styles.containerCkeck}>
-                <label htmlFor="temperamento">Temperamento:</label>
+                <label htmlFor="temperamento">temperamento:</label>
                 {
                 checkbox.map(check => {
                     return(

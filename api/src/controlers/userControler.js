@@ -8,12 +8,12 @@ const pushTemperaments = require('./consultasApi/pushTemperaments')
 
 const createDog = async (imagen, nombre , altura , peso , anios_vida , temperamento) => {
     const newDog = await Dog.create({
-        Imagen: imagen, 
-        Nombre: nombre,
-        Altura: altura,
-        Peso: peso,
-        Anios_Vida: anios_vida,
-        Temperamento :temperamento
+        imagen: imagen, 
+        nombre: nombre,
+        altura: altura,
+        peso: peso,
+        vidaEstimada: anios_vida,
+        temperamento :temperamento
     });
 
     return newDog;
@@ -25,24 +25,24 @@ const getAllDogs = async() => {
     return dataBaseDogs.concat(dataApiDogs);
 }
 
-const getDogByRaza = async(ID , source) => {
+const getDogByRaza = async(id , source) => {
 
     const allDogs = await getAllDogs();
     let dogByID = allDogs.find(dog => {
         if ( source === 'api'){
-            return dog.ID_Dogs === Number(ID)
+            return dog.idDogs === Number(id)
         }else{
-            return dog.ID_Dogs === ID
+            return dog.idDogs === id
         }
     });
-    if(!dogByID) throw Error(`El perro con numero ${ID} no se encuentra`)
+    if(!dogByID) throw Error(`El perro con numero ${id} no se encuentra`)
     return dogByID;
 }
 
 
 const getDogName = async(name) => {
     const allDogs = await getAllDogs();
-    let dogByName = allDogs.find(dog => dog.Nombre === name.toLowerCase());
+    let dogByName = allDogs.find(dog => dog.nombre === name.toLowerCase());
 
     if(!dogByName) throw Error(`El perro con name ${name} no se encuentra`)
     return dogByName;
@@ -52,7 +52,7 @@ const getTemperaments = async () => {
     const allDogs = await getAllDogs();
     let temperament = [];
     allDogs.forEach(dogs => {
-        const arrayTemp = dogs.Temperamento?.split(', ');
+        const arrayTemp = dogs.temperamento?.split(', ');
         temperament =  temperament.concat(arrayTemp);
     })
     let arraySinRepetidos = temperament.filter((value, index, self) =>  self.indexOf(value) === index);

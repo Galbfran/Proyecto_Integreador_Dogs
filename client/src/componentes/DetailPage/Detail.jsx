@@ -17,7 +17,7 @@ const Detail = () => {
     const { id } = useParams();
     
     const dogDetail = useSelector((state) => state.dogsDetail )
-    const { ID_Dogs ,Imagen , Nombre, Altura ,Peso ,Anios_Vida ,Temperamento } = dogDetail
+    const { idDogs ,imagen , nombre, altura ,peso , vidaEstimada ,temperamento } = dogDetail
     
     useEffect(() => {
         dispatch(detailDogs(id));
@@ -28,16 +28,16 @@ const Detail = () => {
         <section >
                 <NavBar/>
             <div className={styles.container}>
-                    { Nombre && <img src={Imagen} alt={Nombre} className={styles.imagen}/>}
-                    { !Nombre && <img src={'https://media.tenor.com/YXS2BDyDWtwAAAAM/video-games-cargando.gif'} alt={'carga'} className={styles.imagen}/>}
+                    { nombre && <img src={imagen} alt={nombre} className={styles.imagen}/>}
+                    { !nombre && <img src={'https://media.tenor.com/YXS2BDyDWtwAAAAM/video-games-cargando.gif'} alt={'carga'} className={styles.imagen}/>}
                 
                 <div className={styles.data}>
-                    <h2>Raza: { (!Nombre && "Cargando...") || Nombre}</h2>
-                    <p>ID_Dog: { (!ID_Dogs && "Cargando...") || ID_Dogs}</p>
-                    <p>Altura: { (!ID_Dogs && "Cargando..." )|| Altura}</p>
-                    <p>Peso: {(!Nombre && "Cargando...") || Peso}</p>
-                    <p>Vida: {(!Nombre && "Cargando...") || Anios_Vida}</p>
-                    <p>Temperamento: {(!Nombre && "Cargando...") || Temperamento}</p>
+                    <h2>Raza: { (!nombre && "Cargando...") || nombre}</h2>
+                    <p>ID_Dog: { (!idDogs && "Cargando...") || idDogs}</p>
+                    <p>Altura: { (!idDogs && "Cargando..." )|| altura}</p>
+                    <p>Peso: {(!nombre && "Cargando...") || peso}</p>
+                    <p>Vida Estimada: {(!nombre && "Cargando...") || vidaEstimada}</p>
+                    <p>Temperamento: {(!nombre && "Cargando...") || temperamento}</p>
                     <button>
                         <Link to={'/home'}>Volver al Home</Link>
                     </button>

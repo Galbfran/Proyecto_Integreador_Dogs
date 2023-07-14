@@ -2,32 +2,32 @@
 const validate = (inputs) => {
         let error = {};
 
-        if (!inputs.Nombre) error.Nombre = 'Se requiere una Raza.' 
+        if (!inputs.nombre) error.nombre = 'Se requiere una Raza.' 
 
-        if (parseInt(inputs.PesoMin) <= 0) error.PesoMin = 'Se debe ingresar un Peso mayor a "0"' 
-        if (parseInt(inputs.PesoMin) >= 90) error.PesoMin = 'Se debe ingresar un Peso menor a 90 Kilogramos' 
-        if (parseInt(inputs.PesoMin) > inputs.PesoMax) error.PesoMin = 'Se debe ingresar un Peso menor o igual al maximo' 
+        if (parseInt(inputs.pesoMin) <= 0) error.pesoMin = 'Se debe ingresar un peso mayor a "0"' 
+        if (parseInt(inputs.pesoMin) >= 90) error.pesoMin = 'Se debe ingresar un peso menor a 90 Kilogramos' 
+
         
-        if (parseInt(inputs.PesoMax) <= 0) error.PesoMax = 'Se debe ingresar un Peso mayor a "0"' 
-        if (parseInt(inputs.PesoMax) >= 90) error.PesoMax = 'Se debe ingresar un Peso menor a 90 Kilogramos' 
-        if (parseInt(inputs.PesoMax) < inputs.PesoMin) error.PesoMax = 'Se debe ingresar un Peso mayor o igual al minimo' 
+        if (parseInt(inputs.pesoMax) <= 0) error.pesoMax = 'Se debe ingresar un peso mayor a "0"' 
+        if (parseInt(inputs.pesoMax) >= 90) error.pesoMax = 'Se debe ingresar un peso menor a 90 Kilogramos' 
+        if (parseInt(inputs.pesoMax) < inputs.pesoMin) error.pesoMax = 'Se debe ingresar un peso mayor o igual al minimo' 
 
-        if (parseInt(inputs.AlturaMin) <= 0) error.AlturaMin = 'Se debe ingresar una Altura mayor a "0"' 
-        if (parseInt(inputs.AlturaMin) >= 20)error.AlturaMin = 'Se debe ingresar una Altura menor a "20"' 
-        if (parseInt(inputs.AlturaMin) > inputs.AlturaMax) error.AlturaMin = 'Se debe ingresar un Altura menor o igual al maximo'
+        if (parseInt(inputs.alturaMin) <= 0) error.alturaMin = 'Se debe ingresar una altura mayor a "0"' 
+        if (parseInt(inputs.alturaMin) >= 20)error.alturaMin = 'Se debe ingresar una altura menor a "20"' 
 
 
-        if (parseInt(inputs.AlturaMax) <= 0) error.AlturaMax = 'Se debe ingresar una Altura mayor a "0"' 
-        if (parseInt(inputs.AlturaMax) >= 20) error.AlturaMax = 'Se debe ingresar una Altura menor a 20' 
-        if (parseInt(inputs.AlturaMax) < inputs.AlturaMin) error.AlturaMax = 'Se debe ingresar un Altura mayor o igual al minimo'
 
-        if (parseInt(inputs.AniosMin) <= 0) error.AniosMin = 'Se debe ingresar una Edad mayor a "0"' 
-        if (parseInt(inputs.AniosMin) >= 35) error.AniosMin = 'Se debe ingresar una Edad menor a 35 años' 
-        if (parseInt(inputs.AniosMin) > inputs.AniosMax) error.AniosMin = 'Se debe ingresar un Años menor o igual al maximo'
+        if (parseInt(inputs.alturaMax) <= 0) error.alturaMax = 'Se debe ingresar una altura mayor a "0"' 
+        if (parseInt(inputs.alturaMax) >= 20) error.alturaMax = 'Se debe ingresar una altura menor a 20' 
+        if (parseInt(inputs.alturaMax) < inputs.alturaMin) error.alturaMax = 'Se debe ingresar un altura mayor o igual al minimo'
+
+        if (parseInt(inputs.añosMin) <= 0) error.añosMin = 'Se debe ingresar una Edad mayor a "0"' 
+        if (parseInt(inputs.añosMin) >= 35) error.añosMin = 'Se debe ingresar una Edad menor a 35 años' 
+
         
-        if (parseInt(inputs.AniosMax) <= 0) error.AniosMax = 'Se debe ingresar una Edad mayor a "0"' 
-        if (parseInt(inputs.AniosMax) >= 35) error.AniosMax = 'Se debe ingresar una Edad menor a 35 años'
-        if (parseInt(inputs.AniosMax) < inputs.AniosMin) error.AlturaMax = 'Se debe ingresar un Años mayor o igual al minimo' 
+        if (parseInt(inputs.añosMax) <= 0) error.añosMax = 'Se debe ingresar una Edad mayor a "0"' 
+        if (parseInt(inputs.añosMax) >= 35) error.añosMax = 'Se debe ingresar una Edad menor a 35 años'
+        if (parseInt(inputs.añosMax) < inputs.añosMin) error.alturaMax = 'Se debe ingresar un Años mayor o igual al minimo' 
         
         return error;
 }

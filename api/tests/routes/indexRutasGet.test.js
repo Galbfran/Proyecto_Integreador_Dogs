@@ -16,14 +16,14 @@ describe('test ruta GET /dogs', () => {
     test('el objeto dentro del array tiene las propiedades esperadas', async () => {
         const response = await request(server).get('/dogs').send();
         const claves = response.body[1]
-        expect(claves).to.have.property('ID_Dogs');
-        expect(claves).to.have.property('Imagen');
-        expect(claves).to.have.property('Nombre');
-        expect(claves).to.have.property('Altura');
-        expect(claves).to.have.property('Peso');
-        expect(claves).to.have.property('Anios_Vida');
-        expect(claves).to.have.property('Temperamento');
-        expect(claves).to.have.property('BaseDatos');
+        expect(claves).to.have.property('idDogs');
+        expect(claves).to.have.property('imagen');
+        expect(claves).to.have.property('nombre');
+        expect(claves).to.have.property('altura');
+        expect(claves).to.have.property('peso');
+        expect(claves).to.have.property('vidaEstimada');
+        expect(claves).to.have.property('temperamento');
+        expect(claves).to.have.property('baseDatos');
     });
 });
 
@@ -39,14 +39,14 @@ describe('test ruta GET /dogs/:idRaza',  () => {
     test('el objeto tiene las propiedades esperadas', async () => {
         const response = await request(server).get('/dogs/1').send();
         const claves = response.body
-        expect(claves).to.have.property('ID_Dogs');
-        expect(claves).to.have.property('Imagen');
-        expect(claves).to.have.property('Nombre');
-        expect(claves).to.have.property('Altura');
-        expect(claves).to.have.property('Peso');
-        expect(claves).to.have.property('Anios_Vida');
-        expect(claves).to.have.property('Temperamento');
-        expect(claves).to.have.property('BaseDatos');
+        expect(claves).to.have.property('idDogs');
+        expect(claves).to.have.property('imagen');
+        expect(claves).to.have.property('nombre');
+        expect(claves).to.have.property('altura');
+        expect(claves).to.have.property('peso');
+        expect(claves).to.have.property('vidaEstimada');
+        expect(claves).to.have.property('temperamento');
+        expect(claves).to.have.property('baseDatos');
     });
     test('pedir dog  ID:1000 devuelve status 400 y mensaje correspondiente', async () => {
         const response = await request(server).get('/dogs/1000').send();
@@ -57,11 +57,11 @@ describe('test ruta GET /dogs/:idRaza',  () => {
 
 describe('test ruta GET /dogs/name',  () => {
     test('pedir dog  por name devuelve status 200', async () => {
-        const response = await request(server).get('/dogs/?Nombre=boxer').send('afghan hound');
+        const response = await request(server).get('/dogs/?name=boxer').send('afghan hound');
         expect(response.statusCode).to.equal(200);
     });
     test('devuelve un Objeto', async () => {
-        const response = await request(server).get('/dogs/?Nombre=boxer').send();
+        const response = await request(server).get('/dogs/?name=boxer').send();
         expect(response.body).instanceOf(Object);
     });
 });
