@@ -5,7 +5,9 @@ const {
     allDogsHandler,
     dogsByRazaHandler,
     temperamentsHandler,
-    postDogsHandler
+    postDogsHandler,
+    dogsDeleteByRazaHandler,
+    dogsUpdateByRazaHandler
 } = require('../handlers/usersHandlers')
 
 const router = Router();
@@ -22,6 +24,10 @@ router.get('/dogs',allDogsHandler);
 router.get('/dogs/name?',allDogsHandler);
 
 router.get('/temperaments',temperamentsHandler);
+
+router.put('/dogs/:idRaza',dogsUpdateByRazaHandler);
+
+router.delete('/dogs/:idRaza',dogsDeleteByRazaHandler);
 
 
 

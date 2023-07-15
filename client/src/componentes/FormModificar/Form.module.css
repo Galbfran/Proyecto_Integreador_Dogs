@@ -1,0 +1,78 @@
+.container{
+
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+    
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding-bottom: 20px;
+    background-color: rgb(190, 190, 190 , 0.7);
+    border: solid 1px black;
+}
+
+.container button {
+    width: 100px;
+    background-color: rgb(190, 190, 190 , 0.7);
+    border: solid 1px black;
+    border-radius: 15px;
+    size: 10px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.container button:hover{
+    background-color: rgba(247, 246, 246, 0.7);
+}
+
+.datos{
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.datos input{
+    width: 300px;
+}
+
+
+.datosTexto{
+    display: flex;
+    margin-top: 10px;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.warning {
+    border: solid red 1px;
+    border-radius: 0.2em;
+}
+
+.danger{
+    font-size: 15px;
+    color: red;
+}
+
+.check{
+
+    gap:2px;
+}
+
+.containerCkeck{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    align-items: center;
+    justify-content: center;
+    gap:2px;
+}

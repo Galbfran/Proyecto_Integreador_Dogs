@@ -11,6 +11,8 @@ import Detail from './componentes/DetailPage/Detail';
 import Form from './componentes/FormPage/Form';
 import Inicio from './componentes/InicioPage/Inicio';
 import About from "./componentes/About/About";
+import FormModificar from "./componentes/FormModificar/FormModificar";
+
 
 
 
@@ -24,6 +26,7 @@ function App() {
         <Route path="/about" element={<About/>}/>
         <Route path="/home" element={<Home/>}/>
         <Route path="/detail/:id" element={<Detail/>}/>
+        <Route path="/detailmodificar/:id" element={<FormModificar/>}/>
         <Route path="/error" element={<Error/>}/>
       </Routes>
     </div>

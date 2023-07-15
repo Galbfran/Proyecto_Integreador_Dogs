@@ -2,8 +2,6 @@
 const validate = (inputs) => {
         let error = {};
 
-        if (!inputs.nombre) error.nombre = 'Se requiere una Raza.' 
-
         if (parseInt(inputs.pesoMin) <= 0) error.pesoMin = 'Se debe ingresar un peso mayor a "0"' 
         if (parseInt(inputs.pesoMin) >= 90) error.pesoMin = 'Se debe ingresar un peso menor a 90 Kilogramos' 
 

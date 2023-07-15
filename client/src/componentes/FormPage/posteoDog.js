@@ -8,15 +8,15 @@ const posteoDog = async(inputs , temperaments) => {
         pesoMax,
         alturaMin,
         alturaMax, 
-        aniosMin,
-        aniosMax} = inputs 
+        añosMin,
+        añosMax} = inputs 
 
     const createDog = {
         nombre: nombre,
         imagen: "https://cdn2.thedogapi.com/images/Sk7Qbg9E7.jpg",
         peso:`${pesoMin} - ${pesoMax}`,
         altura: `${alturaMin} - ${alturaMax}`,
-        anios_vida:`${aniosMin} - ${aniosMax} years`,
+        anios_vida:`${añosMin} - ${añosMax} years`,
         temperamento: `${temperamento}`
     }
     const response = await axios.post('http://www.localhost:3001/dogs' , createDog);

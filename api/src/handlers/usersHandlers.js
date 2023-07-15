@@ -3,7 +3,9 @@ const {
     getDogByRaza,
     getAllDogs,
     getDogName,
-    getTemperaments
+    getTemperaments,
+    deleteDog,
+    updateDog
 } = require('../controlers/userControler')
 
 
@@ -53,9 +55,37 @@ try {
 }
 }
 
+const dogsUpdateByRazaHandler = async (req , res) => {
+    const { idRaza } = req.params;
+    const datosUpdate = req.body;
+    try {
+        const dogUpdate = await updateDog(idRaza , datosUpdate)
+        return res.status(200).json({dogUpdate})
+    } catch (error) {
+        return res.status(400).json({error : error.message})
+    }
+    
+}
+
+const dogsDeleteByRazaHandler = async (req , res) => {
+    const { idRaza } = req.params;
+    try {
+        const dogDelete = await deleteDog(idRaza)
+        return res.status(200).json({message : `Dog con id ${idRaza} eliminado con exito`})
+        
+    } catch (error) {
+        return res.status(400).json({error : error.message})
+    }
+}
+
+
+
+
 module.exports = {
     allDogsHandler,
     dogsByRazaHandler,
     temperamentsHandler,
-    postDogsHandler
+    postDogsHandler,
+    dogsDeleteByRazaHandler,
+    dogsUpdateByRazaHandler
 }

@@ -2,15 +2,16 @@
 import { useEffect , useState } from "react";
 //components
 import CkeckBox from "./CheckBox";
-import posteoDog from "../posteoDog";
 import validate from "../validate";
-import { validarPost } from "../validarPost";
+import {updateDog} from "../updateDog";
+import { useNavigate} from "react-router-dom";
 
 //css
 import styles from './Formulario.module.css'
 
 
-const Formulario = ({arrayCheck}) => {
+const Formulario = ({arrayCheck , id}) => {
+    const navigate = useNavigate();
     const [inputs , setInputs] = useState({
         nombre:'',
         pesoMin:'',
@@ -62,11 +63,10 @@ const Formulario = ({arrayCheck}) => {
 
     const handlerSubmit = async(event) => {
         event.preventDefault()
-        console.log(inputs)
-        if (validarPost(inputs)) return alert('Debes completar todos los datos')
         try {
-            const respons = await posteoDog(inputs , temperaments)
+            const respons = await updateDog(id, inputs , temperaments)
             alert(respons)
+            navigate(`/detail/${id}`);
         } catch (error) {
             alert(error.message)
         }
@@ -122,7 +122,7 @@ const Formulario = ({arrayCheck}) => {
                 }
             </div>
             <div className={styles.button}>
-            { Object.keys(errors).length === 0 && <button type="submit">Crear Perro</button>}
+            <button type="submit">Modificar Perro</button>
                 <button type="reset">Reset</button>
             </div>
         </form>
