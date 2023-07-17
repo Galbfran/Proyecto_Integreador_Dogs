@@ -1,43 +1,45 @@
-
+//hooks
 import { useEffect , useState } from "react";
-
+//components
 import CardDog from "../Dogs/CardDog";
 import Buttons from "./Botones";
 import SearchBar from "./SearchBar";
 import CardCarga from "../Carga/CardCarga";
-
+//funciones para filtro
 import {filtrado} from "./filtrado";
+// modelo de carga
 import dogsVacio from "../../redux/dogsVacio";
-
+// estilos
 import styles from './Home.module.css'
 
-
-
 const  ContainerDogs = ({dogs , arrayCheck}) => {
-    const [checkbox , setCheckbox] = useState([arrayCheck]);
-    const [temperaments , setTemperaments] = useState([]);
-    let [listaDogs, setListaDogs] = useState(dogs);
+    const [checkbox , setCheckbox] = useState([arrayCheck]); //estado para crear ckeckbox
+    const [temperaments , setTemperaments] = useState([]); //estadopara guardar los temperamentos selecionados
+    let [listaDogs, setListaDogs] = useState(dogs); // estado que guarda los todos los dogs
 
-    useEffect(() => {
+    useEffect(() => { // paso a estado la lista re temperamentos pasados por props
         setCheckbox([...arrayCheck])
     },[arrayCheck])
+
+
+
     
-    const handlerCkeckChange = (event) =>{
+    const handlerCkeckChange = (event) =>{ // funcion que guarda o saca temperamentos del estado
         const {  value , checked} = event.target;
-        console.log(checkbox)
-        console.log(temperaments.length + 1) 
-        if (temperaments.length) return
+        console.log(value , 'valor')
+        console.log(checked , 'checked')
+        console.log(temperaments , 'temperaments')
         if (checked) {
-            setTemperaments(temperaments.filter((elim) => elim !== value));
-        } else {
             setTemperaments([...temperaments, value]);
+            console.log(temperaments , 'temperaments')
+        } else {
+            setTemperaments(temperaments.filter((elim) => elim !== value));
         }
     }
-    
 
     //paginado
-    const ITEM_PAGE = 8
-    let [dogsRender , setDogsRender] = useState([...listaDogs]);
+    const ITEM_PAGE = 8 //valor paginado requerido
+    let [dogsRender , setDogsRender] = useState([...listaDogs]); // estado a pasar con los dogs a renderizar
 
     useEffect(() => {
         setListaDogs(dogs); // Establecer la lista completa de perros al iniciar la página
@@ -48,25 +50,23 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         setCurrentPage(1);
     }, [ listaDogs]);
     
-
-
     const [ currentPage , setCurrentPage] = useState(0);
 
-    const nextHandler = () => {
-        const totalElement = listaDogs.length;
-        const nextPage = currentPage +1;
-        const firstIndex = nextPage * ITEM_PAGE;
-        if (firstIndex >= totalElement) return;
-        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));
-        setCurrentPage(nextPage);
+    const nextHandler = () => { // funcion para boton siguente 
+        const totalElement = listaDogs.length; // busco total
+        const nextPage = currentPage +1;        //se calcula numero proxima pagina
+        const firstIndex = nextPage * ITEM_PAGE; // se calcula indice proxima pagina
+        if (firstIndex >= totalElement) return;     // verifico que el proximo elemento no supere el total de elementos 
+        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));   //actulizo estado
+        setCurrentPage(nextPage); //paso pagina 
     }
 
     const prevHandler = () => {
-        const prevPage = currentPage - 1;
-        if (prevPage < 0) return;
-        const firstIndex = prevPage * ITEM_PAGE;
-        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));
-        setCurrentPage(prevPage);
+        const prevPage = currentPage - 1;// calculo numero de pagina anterior
+        if (prevPage < 0) return; // verifico que no sea menor a 0
+        const firstIndex = prevPage * ITEM_PAGE; // calculo indice del primer elemento de la pagina anterir
+        setDogsRender([...listaDogs].splice(firstIndex , ITEM_PAGE));// cargo al estado la lista
+        setCurrentPage(prevPage);//cambio el indice
     }
 
     const filterHandler = (tipo) => {
@@ -88,7 +88,6 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                 <Buttons className={styles.buttons} prevHandler={prevHandler} nextHandler={nextHandler} numPage={currentPage} totalPage={dogs.length}/>
             </div>
             <div className={styles.container}>
-                
             {   dogsRender.map(dog => {
                         return <CardDog 
                             key={dog?.idDogs}
@@ -102,7 +101,6 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
             {
                 dogsRender.length === 0 && (
                     dogsVacio.map((dog , index)=> {
-                        
                         return <CardCarga
                             key={index}
                             name={dog.nombre}

@@ -2,21 +2,15 @@ import axios from 'axios';
 
 export const updateDog = async (id, inputs , temperaments) => {
     const temperamento = temperaments.join(', ')
-    console.log(id , 'id')
-    
-    console.log(temperaments ,'temp')
     let newData = obtenerPropiedadesNoVacias(inputs)
     if(temperamento.length > 0 ){
         newData.temperamento = temperamento
     }
-    console.log(newData)
     try {
-        const response = await axios.put(`http://localhost:3001/dogs/${id}`, newData);
+        const response = await axios.put(`http://localhost:3001/dogs/${id}`, newData).then(resp => resp.data.dogUpdate.idDogs);
         
-        return 'Modificacion realizada con exito'
+        return `Modificacion del Dog con id:${response}, se realizada con exito `
     } catch (error) {
-        // Manejo de errores
-        
         throw new Error('Error al actualizar el perro');
     }
     };
@@ -49,9 +43,6 @@ export const updateDog = async (id, inputs , temperaments) => {
             anios_vida: validar(objeto.añosMin ,objeto.añosMax),
             temperamento: objeto.temperamento,
             };
-
-    
-        
         return salida;
     }
 

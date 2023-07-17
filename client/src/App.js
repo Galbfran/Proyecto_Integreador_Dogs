@@ -12,14 +12,18 @@ import Form from './componentes/FormPage/Form';
 import Inicio from './componentes/InicioPage/Inicio';
 import About from "./componentes/About/About";
 import FormModificar from "./componentes/FormModificar/FormModificar";
+import NavBar from "./componentes/NavBar/NavBar";
 
+import { useLocation} from "react-router-dom";
 
-
+//indico las diferetes rutas con el path='/...' element renderiza componente padre
 
 
 function App() {
+  const location = useLocation();
   return (
     <div className="App">
+      {location.pathname === '/' || <NavBar/>}
       <Routes>
         <Route path="/" element={<Inicio/>}/>
         <Route path="/form" element={<Form/>}/>

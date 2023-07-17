@@ -32,15 +32,15 @@ const SearchBar = ({ handlerCkeckChange , checkbox , filterHandler}) => {
         <div className={styles.searchbar}>
             <div className={styles.container}>
             {
-                filtros.map(filtro => <button onClick={() => filterHandler(filtro)} >{filtro}</button>)
+                filtros.map((filtro , index)=> <button key={index} onClick={() => filterHandler(filtro)} >{filtro}</button>)
             }
             </div>
             <div  className={styles.containerCkeck} >
             {
-                checkbox.map(check => {
+                checkbox.map((check , index)=> {
                     return(
-                        <div className={styles.check}>
-                            <CkeckBox check={check}  handlerCkeckChange={handlerCkeckChange}/>
+                        <div className={styles.check} key={index}>
+                            <CkeckBox check={check}   handlerCkeckChange={handlerCkeckChange}/>
                         </div>
                         )
                     })

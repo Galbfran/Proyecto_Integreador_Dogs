@@ -7,8 +7,9 @@ import store from './redux/store';
 import App from './App';
 import './index.css';
 
+// renderiza mi App , Provider incluye el stado gobal , Router me permite acrear las diferentes rutas de mi paginas
 ReactDOM.render(
-  <Provider store = {store} >
+  <Provider store = {store} > 
     <BrowserRouter>
       <App />
     </BrowserRouter>

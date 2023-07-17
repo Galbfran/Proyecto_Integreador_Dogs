@@ -3,5 +3,5 @@ export const validarPost = (inputs) => {
         if (inputs[propiedad] === '') {
             return true
         }
-        }
+    }
 }

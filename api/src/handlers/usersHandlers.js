@@ -70,8 +70,8 @@ const dogsUpdateByRazaHandler = async (req , res) => {
 const dogsDeleteByRazaHandler = async (req , res) => {
     const { idRaza } = req.params;
     try {
-        const dogDelete = await deleteDog(idRaza)
-        return res.status(200).json({message : `Dog con id ${idRaza} eliminado con exito`})
+        let  dogDelete = await deleteDog(idRaza)
+        return res.status(200).json({message : dogDelete})
         
     } catch (error) {
         return res.status(400).json({error : error.message})

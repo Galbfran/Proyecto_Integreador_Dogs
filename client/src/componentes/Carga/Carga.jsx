@@ -6,7 +6,7 @@ const Carga = () => {
     return(
         <div className={styles.loader}>
             {
-                bar.map(div => <div className={styles[div]}></div>)
+                bar.map((div , index )=> <div key={index} className={styles[div]}></div>)
             }
         </div>
     )

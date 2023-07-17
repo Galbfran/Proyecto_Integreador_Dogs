@@ -7,8 +7,7 @@ import { Link } from "react-router-dom";
 //redux-action
 import { detailDogs , cleanDetail} from "../../redux/actions";
 import { deleteDog } from "./DeleteDog";
-//compenents
-import NavBar from "../NavBar/NavBar";
+
 
 //css
 import styles from './Detail.module.css'
@@ -34,7 +33,6 @@ const Detail = () => {
 
     return(
         <section >
-                <NavBar/>
             <div className={styles.container}>
                     { nombre && <img src={imagen} alt={nombre} className={styles.imagen}/>}
                     { !nombre && <img src={'https://media.tenor.com/YXS2BDyDWtwAAAAM/video-games-cargando.gif'} alt={'carga'} className={styles.imagen}/>}

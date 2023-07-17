@@ -2,16 +2,17 @@ import { Link } from "react-router-dom";
 import styles from './About.module.css'
 
 const About = () => {
-    const imagen = 'https://media.licdn.com/dms/image/D4D35AQHr0PdT6AGMvg/profile-framedphoto-shrink_400_400/0/1686004446866?e=1689292800&v=beta&t=XuZXM4upAsNEWXhvEVfnby2T-T90aEPqDzvZzNhGglY'
+    const imagen = 'https://media.licdn.com/dms/image/D4D35AQHr0PdT6AGMvg/profile-framedphoto-shrink_400_400/0/1686004446866?e=1690218000&v=beta&t=cAVgsyW-Aa4JTOiMpsEmgOOWLGWmmSZNjhl5RXNV7dQ'
     const nombre = "Galbiati Franco"
     const corte = "Ft39-a"
     const github = "https://github.com/Galbfran"
-    const linkedin = "Galbiati Franco"
+    const linkedin = "https://www.linkedin.com/in/franco-galbiati/"
+
     // modificar para inicio de spa de perros
 
     return(
         <div>
-            <h1>Proyecto Integrador Dogs</h1>
+            <h2>Proyecto Integrador Dogs</h2>
             <div>
                 <div className={styles.container}>
                     <img src={imagen} alt={nombre} className={styles.imagen}/>

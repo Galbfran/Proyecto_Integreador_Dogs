@@ -9,24 +9,17 @@ export const PESO_MIN_MAX = 'PESO_MIN_MAX';
 export const PESO_MAX_MIN = 'PESO_MAX_MIN';
 export const TEMPERAMENTO = 'TEMPERAMENTO';
 export const ALL_DOGS = 'ALL_DOGS'
-
+// uso un modelo para la funcion de filtrado de Redux
 function getPesoMinimo(pesoString) {
     const pesos = pesoString.split(" - ");
     return parseInt(pesos[0]);
 }
-
   // Función para obtener el peso máximo
 function getPesoMaximo(pesoString) {
     const pesos = pesoString.split(" - ");
     return parseInt(pesos[1]);
 }
-
-
-
-
-
 export const filtrado = ( listaDogs ,tipo , temperaments) => {
-    console.log(temperaments)
     switch(tipo){
             case API:
                 let dogsApi =  listaDogs.filter(dogs => dogs.baseDatos === false);

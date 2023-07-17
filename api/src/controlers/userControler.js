@@ -57,11 +57,14 @@ const getTemperaments = async () => {
 }
 
 const deleteDog = async(id) => {
-    await Dog.destroy({
+    let dogDelete = await Dog.destroy({
         where:{
             idDogs:id 
         }
     })
+    if(dogDelete === 0) return `El Dog con id: ${id} no se encuentra en la base de datos.` 
+    else return `El Dog con id: ${id} fue eliminado con exito`
+    
 }
 
 const updateDog = async (id, datosUpdate) => {

@@ -4,8 +4,6 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 //componentes
 import Formulario from "./componentsForm/Formulario";
-import NavBar from "../NavBar/NavBar";
-
 //redux-action
 import { detailDogs  , cleanDetail} from "../../redux/actions";
 import { getTemperament } from "../../redux/actions";
@@ -23,14 +21,9 @@ const FormModificar = () => {
         dispatch(getTemperament());
         dispatch(detailDogs(id));
         return () => dispatch(cleanDetail())
-
     }, [ id,dispatch ])
-
-
-
     return(
         <section>
-                <NavBar/>
                 <div >
                     <h2>Formulario para modificar una raza de Perro</h2>
                     <div className={styles.container}>
@@ -40,13 +33,11 @@ const FormModificar = () => {
                         <p>Peso: {(!nombre && "Cargando...") || peso}</p>
                         <p>Vida Estimada: {(!nombre && "Cargando...") || vidaEstimada}</p>
                         <p>Temperamento: {(!nombre && "Cargando...") || temperamento}</p>
-
                     </div>
                 </div>
                 <Formulario id={id} arrayCheck={arrayCheck}/>
         </section>
     )
 }
-
 export default FormModificar;
 
