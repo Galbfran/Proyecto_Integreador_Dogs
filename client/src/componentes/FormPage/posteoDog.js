@@ -1,7 +1,8 @@
 import axios from 'axios'
 
 const posteoDog = async(inputs , temperaments) => {
-    const temperamento = temperaments.split(', ')
+    console.log(temperaments)
+    let temps = temperaments.join(', ')
     const {
         nombre,
         pesoMin,
@@ -17,7 +18,7 @@ const posteoDog = async(inputs , temperaments) => {
         peso:`${pesoMin} - ${pesoMax}`,
         altura: `${alturaMin} - ${alturaMax}`,
         anios_vida:`${añosMin} - ${añosMax} years`,
-        temperamento: `${temperamento}`
+        temperamento: `${temps}`
     }
     const response = await axios.post('http://www.localhost:3001/dogs' , createDog);
     const dogCreate =  responseMessaje(response)

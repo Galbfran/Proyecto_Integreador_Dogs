@@ -1,16 +1,19 @@
 //hooks
 import { useEffect , useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 //components
 import CkeckBox from "./CheckBox";
+// auxiliares
 import posteoDog from "../posteoDog";
 import validate from "../validate";
 import { validarPost } from "../validarPost";
-
 //css
 import styles from './Formulario.module.css'
 
-
 const Formulario = ({arrayCheck}) => {
+    let navigate = useNavigate();
+    let [newTemp , setNewTemp] = useState("");
     const [inputs , setInputs] = useState({
         nombre:'',
         pesoMin:'',
@@ -60,9 +63,15 @@ const Formulario = ({arrayCheck}) => {
         }
     }
 
+    const handlerTempInput = (event) => {
+        if(event.length === 0) return
+        setTemperaments([...temperaments , event])
+        setNewTemp(newTemp = "")
+        
+    }
+
     const handlerSubmit = async(event) => {
         event.preventDefault()
-        console.log(inputs)
         if (validarPost(inputs)) return alert('Debes completar todos los datos')
         try {
             const respons = await posteoDog(inputs , temperaments)
@@ -90,6 +99,7 @@ const Formulario = ({arrayCheck}) => {
         });
         setTemperaments([ ]);
         setCheckbox([...arrayCheck]);
+        navigate('/home')
     }
     return(
         <form className={styles.container}  onSubmit={handlerSubmit}>
@@ -102,7 +112,7 @@ const Formulario = ({arrayCheck}) => {
             arrayInputs.map(dato => {
                 return(
                     <div className={styles.datosTexto}>
-                        <label htmlFor={dato}>{`Dato a Ingresar: ${dato}`}</label>
+                        <label htmlFor={dato}>{`Dato a Ingresar ${dato}:`}</label>
                         <input type="number" id={dato} name={dato} placeholder={`Ingrese ${dato}: ` } value={inputs[dato]} onChange={handlerChange} className={errors[dato] && 'warning'}/> 
                         {errors[dato] && <span className={styles.danger}>{errors[dato]}</span>}
                     </div>
@@ -110,7 +120,6 @@ const Formulario = ({arrayCheck}) => {
                 })
             }
             <div className={styles.containerCkeck}>
-                <label htmlFor="temperamento">temperamento:</label>
                 {
                 checkbox.map((check , index) => {
                     return(
@@ -120,6 +129,11 @@ const Formulario = ({arrayCheck}) => {
                         )
                     })
                 }
+            </div>
+            <div>
+                <label htmlFor="temperamento">Temperamento:</label>
+                <input type="text" placeholder="temperamento" name="temperamento" value={newTemp} onChange={(e) => setNewTemp(e.target.value)}/>
+                <button type="button" onClick={() => handlerTempInput(newTemp)}>Nuevo Temperamento</button>
             </div>
             <div className={styles.button}>
             { Object.keys(errors).length === 0 && <button type="submit">Crear Perro</button>}

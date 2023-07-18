@@ -20,7 +20,7 @@ const pushTemperaments = require('./consultasApi/pushTemperaments')
 const createDog = async (imagen, nombre, altura, peso, anios_vida, temperamentos) => {
         let temps = temperamentos
         try {
-            const arrayTemperamentos = temperamentos.split(',').map(temp => temp.trim());
+            const arrayTemperamentos = temperamentos.split(' ').map(temp => temp.trim());
         
             // Buscar todos los temperamentos existentes
             const existingTemperaments = await Temperaments.findAll();
