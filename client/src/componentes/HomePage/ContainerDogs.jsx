@@ -21,17 +21,10 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         setCheckbox([...arrayCheck])
     },[arrayCheck])
 
-
-
-    
     const handlerCkeckChange = (event) =>{ // funcion que guarda o saca temperamentos del estado
         const {  value , checked} = event.target;
-        console.log(value , 'valor')
-        console.log(checked , 'checked')
-        console.log(temperaments , 'temperaments')
         if (checked) {
             setTemperaments([...temperaments, value]);
-            console.log(temperaments , 'temperaments')
         } else {
             setTemperaments(temperaments.filter((elim) => elim !== value));
         }
@@ -82,6 +75,7 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
     }
 
 
+
     return(
         <div >
             <div>
@@ -96,6 +90,7 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                             name={dog?.nombre}
                             temperamento={dog?.temperamento}
                             peso={dog?.peso}
+                            baseDatos={dog?.baseDatos}
                         />})
                 }
             {
