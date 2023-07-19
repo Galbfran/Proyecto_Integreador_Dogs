@@ -3,36 +3,21 @@ const { Dog , Temperaments } = require('../db');
 const fetchData = require('./consultasApi/rutasApi')
 const pushTemperaments = require('./consultasApi/pushTemperaments')
 
-/* const createDog = async (imagen, nombre , altura , peso , anios_vida , temperamento) => {
-    const newDog = await Dog.create({
-        imagen: imagen, 
-        nombre: nombre,
-        altura: altura,
-        peso: peso,
-        vidaEstimada: anios_vida,
-        temperamento :temperamento
-    }, {
-        include:Temperaments
-    });
-    return newDog;
-} */
+
 
 const createDog = async (imagen, nombre, altura, peso, anios_vida, temperamentos) => {
         let temps = temperamentos
         try {
             const arrayTemperamentos = temperamentos.split(' ').map(temp => temp.trim());
-        
             // Buscar todos los temperamentos existentes
             const existingTemperaments = await Temperaments.findAll();
             const existingTemperamentNames = existingTemperaments.map(temp => temp.nombre);
             const newTemperaments = arrayTemperamentos.filter(temp => !existingTemperamentNames.includes(temp));
-    
         // Crear los nuevos temperamentos en la base de datos (si existen)
             if (newTemperaments.length > 0) {
                 const newTemperamentObjects = newTemperaments.map(temp => ({ nombre: temp }));
                 await Temperaments.bulkCreate(newTemperamentObjects);
         }
-    
         // Crear el perro
         const newDog = await Dog.create({
             imagen: imagen,
@@ -42,35 +27,28 @@ const createDog = async (imagen, nombre, altura, peso, anios_vida, temperamentos
             vidaEstimada: anios_vida,
             temperamento: temps
         });
-    
         // Buscar los temperamentos en la base de datos para asociarlos al perro
         const temperamentosDb = await Temperaments.findAll({ where: { nombre: arrayTemperamentos } });
-    
         // Asociar los temperamentos al perro recién creado
         await newDog.addTemperaments(temperamentosDb);
-    
         return newDog;
         } catch (error) {
         throw new Error('Error al crear el perro: ' + error.message);
         }
     };
 
-/* const getAllDogs = async() => {
-    const dataBaseDogs = await Dog.findAll();
-    const dataApiDogs = await fetchData();
-    return dataBaseDogs.concat(dataApiDogs);
-} */
+
 const getAllDogs = async () => {
     try {
-      const dataBaseDogs = await Dog.findAll({
+        const dataBaseDogs = await Dog.findAll({
         include: [Temperaments], // Incluir la información de los temperamentos asociados
-      });
-      const dataApiDogs = await fetchData();
-      return dataBaseDogs.concat(dataApiDogs);
+        });
+        const dataApiDogs = await fetchData();
+        return dataBaseDogs.concat(dataApiDogs);
     } catch (error) {
-      throw new Error('Error al obtener todos los perros: ' + error.message);
+        throw new Error('Error al obtener todos los perros: ' + error.message);
     }
-  };
+};
 
 const getDogByRaza = async(id , source) => {
     const allDogs = await getAllDogs();
@@ -86,11 +64,13 @@ const getDogByRaza = async(id , source) => {
 }
 
 
-const getDogName = async(name) => {
+const getDogName = async (name) => {
     const allDogs = await getAllDogs();
-    let dogByName = allDogs.find(dog => dog.nombre === name.toLowerCase());
-    if(!dogByName) throw Error(`El perro con name ${name} no se encuentra`)
-    return dogByName;
+    const dogsWithName = allDogs.filter(dog => dog.nombre.toLowerCase().includes(name.toLowerCase()));
+    if (dogsWithName.length === 0) {
+        throw new Error(`No se encontraron perros con nombre que contenga '${name}'`);
+    }
+    return dogsWithName;
 }
 
 const getTemperaments = async () => {

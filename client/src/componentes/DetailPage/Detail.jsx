@@ -16,7 +16,6 @@ const Detail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
-    
     const dogDetail = useSelector((state) => state.dogsDetail )
     const { idDogs ,imagen , nombre, altura ,peso , vidaEstimada ,temperamento , baseDatos} = dogDetail
     const modificar ={render :baseDatos}

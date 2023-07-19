@@ -1,7 +1,6 @@
 import axios from 'axios'
 
 const posteoDog = async(inputs , temperaments) => {
-    console.log(temperaments)
     let temps = temperaments.join(', ')
     const {
         nombre,

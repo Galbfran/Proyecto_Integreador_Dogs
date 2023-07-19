@@ -30,9 +30,13 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         }
     }
 
+    
     //paginado
     const ITEM_PAGE = 8 //valor paginado requerido
     let [dogsRender , setDogsRender] = useState([...listaDogs]); // estado a pasar con los dogs a renderizar
+    
+
+
 
     useEffect(() => {
         setListaDogs(dogs); // Establecer la lista completa de perros al iniciar la página
@@ -65,15 +69,13 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
     const filterHandler = (tipo) => {
         let filteredDogs;
         if (tipo === 'ALL_DOGS') {
-            filteredDogs = dogs; // Utilizar el estado dogs directamente
-            } else {
-            filteredDogs = filtrado(listaDogs, tipo , temperaments); // Aplicar filtro al estado listaDogs
-            }
+          filteredDogs = dogs; // Utilizar el estado dogs directamente
+        } else {
+          filteredDogs = filtrado(listaDogs, tipo, temperaments); // Aplicar filtro al estado listaDogs
+        }
         setListaDogs(filteredDogs);
-        setDogsRender(filteredDogs.slice(0, ITEM_PAGE));
         setCurrentPage(1);
-    }
-
+    };
 
 
     return(
@@ -94,7 +96,7 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
                         />})
                 }
             {
-                dogsRender.length === 0 && (
+                !dogsRender  && (
                     dogsVacio.map((dog , index)=> {
                         return <CardCarga
                             key={index}

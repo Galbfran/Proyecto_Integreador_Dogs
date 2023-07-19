@@ -1,10 +1,12 @@
 //Hooks
 import { useDispatch , useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect , useState } from "react";
 //redux-action
-import { getAllDogs , cleanDogs , getTemperament} from "../../redux/actions";
+import { getAllDogs , cleanDogs , getTemperament , getDogsByName} from "../../redux/actions";
 //componentes
 import ContainerDogs from "./ContainerDogs";
+import InputName from "./InputName";
+import styles from './Botones.module.css'
 // componente principal de home.
 //en este componente se realiza el dispatch al estado global 
 //solicito array con todos los dogs y los temperamentos
@@ -16,13 +18,30 @@ const Home = () => {
         dispatch(getAllDogs());
         dispatch(getTemperament())
         return () => dispatch(cleanDogs())
-    }, [ dispatch ])
+    }, [ dispatch])
     
     let  dogs  = useSelector(state => state.allDogs)
     let arrayCheck = useSelector(state => state.temperament)
 
+    let [name , setName] = useState('')
+
+    const handlerChange = (event) => {
+        const { value } = event.target;
+        setName(value);
+    };
+
+
+    const handlerName = () => {
+        console.log(name)
+        dispatch(getDogsByName(name))
+        }
+    
+
     return(
         <section>
+            <div className={styles.container}>
+                <InputName handlerName={handlerName} name={name} handlerChange={handlerChange} />
+            </div>
             <article >
                 <ContainerDogs dogs={dogs} arrayCheck={arrayCheck} />
             </article>
