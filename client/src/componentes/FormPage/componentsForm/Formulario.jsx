@@ -1,7 +1,6 @@
 //hooks
 import { useEffect , useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 //components
 import CkeckBox from "./CheckBox";
 // auxiliares
@@ -13,8 +12,8 @@ import styles from './Formulario.module.css'
 
 const Formulario = ({arrayCheck}) => {
     let navigate = useNavigate();
-    let [newTemp , setNewTemp] = useState("");
-    const [inputs , setInputs] = useState({
+    let [newTemp , setNewTemp] = useState("");      //estado para guardar temperamentos no existentes
+    const [inputs , setInputs] = useState({         //estado para guardar valores inputs
         nombre:'',
         pesoMin:'',
         pesoMax:'',
@@ -23,7 +22,7 @@ const Formulario = ({arrayCheck}) => {
         añosMin:'',
         añosMax:'',
     });
-    const [errors , setErrors] = useState({
+    const [errors , setErrors] = useState({         //guarda mensajes de error
         nombre:'',
         pesoMin:'',
         pesoMax:'',
@@ -32,8 +31,8 @@ const Formulario = ({arrayCheck}) => {
         añosMin:'',
         añosMax:'',
     });
-    const [temperaments , setTemperaments] = useState([ ]);
-    const [checkbox , setCheckbox] = useState([arrayCheck]);
+    const [temperaments , setTemperaments] = useState([ ]);     //array con temperamentos selecionados
+    const [checkbox , setCheckbox] = useState([arrayCheck]);    //array con temperamentos a renderizar
 
     useEffect(() => {
         setCheckbox([...arrayCheck])
@@ -54,7 +53,7 @@ const Formulario = ({arrayCheck}) => {
             }));
         
     }
-    const handlerCkeckChange = (event) =>{
+    const handlerCkeckChange = (event) =>{              //handler para cargar temperamentos desde los checkbox  
         const {  value , checked} = event.target;
         if(checked){
             setTemperaments([...temperaments, value])
@@ -63,14 +62,14 @@ const Formulario = ({arrayCheck}) => {
         }
     }
 
-    const handlerTempInput = (event) => {
+    const handlerTempInput = (event) => {               //handler para agregar temperamento a el array si no esta en la base de datos
         if(event.length === 0) return
         setTemperaments([...temperaments , event])
         setNewTemp(newTemp = "")
         
     }
 
-    const handlerSubmit = async(event) => {
+    const handlerSubmit = async(event) => {             // handler para post nuevo dog
         event.preventDefault()
         if (validarPost(inputs)) return alert('Debes completar todos los datos')
         try {

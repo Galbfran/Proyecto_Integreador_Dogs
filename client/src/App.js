@@ -17,7 +17,7 @@ import NavBar from "./componentes/NavBar/NavBar";
 import { useLocation} from "react-router-dom";
 
 //indico las diferetes rutas con el path='/...' element renderiza componente padre
-
+// navBar no se renderiza en path='/' 
 
 function App() {
   const location = useLocation();

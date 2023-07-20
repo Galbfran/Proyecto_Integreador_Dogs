@@ -30,14 +30,10 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         }
     }
 
-    
     //paginado
     const ITEM_PAGE = 8 //valor paginado requerido
     let [dogsRender , setDogsRender] = useState([...listaDogs]); // estado a pasar con los dogs a renderizar
     
-
-
-
     useEffect(() => {
         setListaDogs(dogs); // Establecer la lista completa de perros al iniciar la página
     }, [dogs]);
@@ -76,7 +72,6 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
         setListaDogs(filteredDogs);
         setCurrentPage(1);
     };
-
 
     return(
         <div >

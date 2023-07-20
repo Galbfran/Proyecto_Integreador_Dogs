@@ -9,9 +9,10 @@ import { detailDogs  , cleanDetail} from "../../redux/actions";
 import { getTemperament } from "../../redux/actions";
 import styles from './Form.module.css'
 
+// componente padre para modificar dogs de la base de datos
+// renderiza info actual de dog a cambiar  y el formulario 
 const FormModificar = () => {
     const { id } = useParams();
-
     const dogDetail = useSelector((state) => state.dogsDetail )
     const { idDogs , nombre, altura ,peso , vidaEstimada ,temperamento } = dogDetail
     const dispatch = useDispatch();

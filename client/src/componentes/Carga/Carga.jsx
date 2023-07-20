@@ -1,4 +1,5 @@
 import styles from './Carga.module.css'
+// se encarga de reemplazar a la imagen en la espera del renderizado de las cards
 
 const Carga = () => {
     let bar = ["bar1","bar2","bar3","bar4","bar5","bar6","bar7","bar8","bar9","bar10","bar11","bar12",]

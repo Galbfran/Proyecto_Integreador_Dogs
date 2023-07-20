@@ -13,7 +13,6 @@ import {
     ALL_DOGS
 } from './filtrado';
 
-
 const SearchBar = ({ handlerCkeckChange , checkbox , filterHandler}) => {
     let filtros = [
         API,

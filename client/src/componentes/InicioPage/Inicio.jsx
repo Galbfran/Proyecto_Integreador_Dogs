@@ -2,14 +2,12 @@
 import { Link } from "react-router-dom";
 import styles from './Inicio.module.css'
 
-
 const Inicio = () => {
     const imagen = 'https://s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/12/21173751/perro-spa.jpg'
     const nombre = "Spa Perros"
     const localidad = "San Miguel"
     const telefono = "54 - 11 - 4567 - 1234 "
     const mail = "SpaDogs@gmail.com"
-    // modificar para inicio de spa de perros
 
     return(
         <div>

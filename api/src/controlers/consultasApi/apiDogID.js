@@ -2,7 +2,6 @@ const axios = require('axios');
 
 
 const apiDogID = async(id) => {
-    
     const config = {
         method: 'get',
         maxBodyLength: Infinity,

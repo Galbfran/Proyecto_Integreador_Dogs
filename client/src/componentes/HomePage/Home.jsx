@@ -30,12 +30,9 @@ const Home = () => {
         setName(value);
     };
 
-
     const handlerName = () => {
-        console.log(name)
         dispatch(getDogsByName(name))
         }
-    
 
     return(
         <section>
@@ -45,7 +42,6 @@ const Home = () => {
             <article >
                 <ContainerDogs dogs={dogs} arrayCheck={arrayCheck} />
             </article>
-            
         </section>
     )
 }

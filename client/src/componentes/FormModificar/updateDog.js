@@ -8,7 +8,6 @@ export const updateDog = async (id, inputs , temperaments) => {
     }
     try {
         const response = await axios.put(`http://localhost:3001/dogs/${id}`, newData).then(resp => resp.data.dogUpdate.idDogs);
-        
         return `Modificacion del Dog con id:${response}, se realizada con exito `
     } catch (error) {
         throw new Error('Error al actualizar el perro');

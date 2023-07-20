@@ -5,14 +5,12 @@ import CkeckBox from "./CheckBox";
 import validate from "../validate";
 import {updateDog} from "../updateDog";
 import { useNavigate} from "react-router-dom";
-
 //css
 import styles from './Formulario.module.css'
 
-
 const Formulario = ({arrayCheck , id}) => {
-    const navigate = useNavigate();
-    const [inputs , setInputs] = useState({
+    const navigate = useNavigate();             
+    const [inputs , setInputs] = useState({     //estado para guardar valores de los inputs
         nombre:'',
         pesoMin:'',
         pesoMax:'',
@@ -21,7 +19,7 @@ const Formulario = ({arrayCheck , id}) => {
         añosMin:'',
         añosMax:'',
     });
-    const [errors , setErrors] = useState({
+    const [errors , setErrors] = useState({     // estado para guardar msj de errar
         nombre:'',
         pesoMin:'',
         pesoMax:'',
@@ -30,16 +28,16 @@ const Formulario = ({arrayCheck , id}) => {
         añosMin:'',
         añosMax:'',
     });
-    const [temperaments , setTemperaments] = useState([ ]);
-    const [checkbox , setCheckbox] = useState([arrayCheck]);
+    const [temperaments , setTemperaments] = useState([ ]);     //guarda temperamentos en array
+    const [checkbox , setCheckbox] = useState([arrayCheck]);    // pasa los temepramentos de estado global para crear checkbox
 
     useEffect(() => {
         setCheckbox([...arrayCheck])
     },[arrayCheck])
 
-    const arrayInputs = Object.keys(inputs).filter(key => key !== 'nombre')
+    const arrayInputs = Object.keys(inputs).filter(key => key !== 'nombre') //array para crear los inputs numericos 
     
-    const handlerChange = (event) => {
+    const handlerChange = (event) => {          //guardo valores en los estados correspondientes 
         const { name, value} = event.target;
         setInputs({
             ...inputs,
@@ -52,7 +50,7 @@ const Formulario = ({arrayCheck , id}) => {
             }));
         
     }
-    const handlerCkeckChange = (event) =>{
+    const handlerCkeckChange = (event) =>{              //handler par los checkbox
         const {  value , checked} = event.target;
         if(checked){
             setTemperaments([...temperaments, value])
@@ -61,7 +59,7 @@ const Formulario = ({arrayCheck , id}) => {
         }
     }
 
-    const handlerSubmit = async(event) => {
+    const handlerSubmit = async(event) => {             // handler para submit con la base de datos retorna al detail
         event.preventDefault()
         try {
             const respons = await updateDog(id, inputs , temperaments)

@@ -1,5 +1,6 @@
 import Carga from "./Carga";
 import styles from '../Dogs/styleCard.module.css'
+//card de espera 
 
 const CardCarga = ({name , peso , temperamento}) => {
     return(

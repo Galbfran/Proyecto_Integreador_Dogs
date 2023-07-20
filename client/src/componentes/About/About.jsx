@@ -8,8 +8,6 @@ const About = () => {
     const github = "https://github.com/Galbfran"
     const linkedin = "https://www.linkedin.com/in/franco-galbiati/"
 
-    // modificar para inicio de spa de perros
-
     return(
         <div>
             <h2>Proyecto Integrador Dogs</h2>
@@ -19,8 +17,8 @@ const About = () => {
                 <div className={styles.data}>
                     <h2>Nombre: {nombre}</h2>
                     <p>Corte: {corte}</p>
-                    <p>Github: {github}</p>
-                    <p>Linkedin: {linkedin}</p>
+                    <p>Github: <a>{github}</a></p>
+                    <p>Linkedin:<a>{linkedin}</a> </p>
                     <button>
                         <Link to={'/home'}>Entrar al Home</Link>
                     </button>
