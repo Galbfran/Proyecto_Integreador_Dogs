@@ -65,12 +65,19 @@ const  ContainerDogs = ({dogs , arrayCheck}) => {
     const filterHandler = (tipo) => {
         let filteredDogs;
         if (tipo === 'ALL_DOGS') {
-          filteredDogs = dogs; // Utilizar el estado dogs directamente
+            filteredDogs = dogs; 
+          // Utilizar el estado dogs directament
+            setListaDogs(filteredDogs);
+            setCurrentPage(1);
+            setDogsRender(filteredDogs.slice(0, ITEM_PAGE));
         } else {
-          filteredDogs = filtrado(listaDogs, tipo, temperaments); // Aplicar filtro al estado listaDogs
+            
+            filteredDogs = filtrado(listaDogs, tipo, temperaments); 
+            // Aplicar filtro al estado listaDogs
+            setListaDogs(filteredDogs);
+            setCurrentPage(1);
+            setDogsRender(filteredDogs.slice(0, ITEM_PAGE));
         }
-        setListaDogs(filteredDogs);
-        setCurrentPage(1);
     };
 
     return(
