@@ -14,7 +14,6 @@ const fetchData = async () => {
             const { weight, height, id, name, life_span, temperament, image } = dog;
             const dogObjet = {
                 idDogs: id,
-                imagen: image.url,
                 nombre: name.toLowerCase(),
                 altura: height.metric,
                 peso: weight.metric,
