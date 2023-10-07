@@ -50,8 +50,7 @@ const Formulario = ({arrayCheck}) => {
             setErrors(validate({
                 ...inputs,
                 [name]: value
-            }));
-        
+            }))
     }
     const handlerCkeckChange = (event) =>{              //handler para cargar temperamentos desde los checkbox  
         const {  value , checked} = event.target;

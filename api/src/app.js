@@ -15,7 +15,7 @@ server.use(bodyParser.json({ limit: '50mb' }));//También se establece un límit
 server.use(cookieParser());//para analizar las cookies en las solicitudes entrantes.
 server.use(morgan('dev'));
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'http://localhost:3000'); // . Permite las solicitudes desde el origen 'http://localhost:3000'
+  res.header('Access-Control-Allow-Origin', '*'); // . Permite las solicitudes desde el origen 'http://localhost:3000'
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
