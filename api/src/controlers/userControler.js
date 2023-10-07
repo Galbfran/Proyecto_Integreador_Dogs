@@ -42,7 +42,8 @@ const getAllDogs = async () => {
         const dataBaseDogs = await Dog.findAll({     //trae todos los dogs en base de datos
         include: [Temperaments],                    // agrega la informacion de los temperamentos asociados
         });
-        const dataApiDogs = await fetchData();      //trae dogs api con funcion auxiliar
+        const dataApiDogs = await fetchData();  
+          //trae dogs api con funcion auxiliar
         return dataBaseDogs.concat(dataApiDogs);
     } catch (error) {
         throw new Error('Error al obtener todos los perros: ' + error.message);
